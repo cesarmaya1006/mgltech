@@ -1,0 +1,82 @@
+.card-step {
+    width: 12%;
+    margin: 1% 1%;
+    padding: 0;
+}
+.activo {
+    width: 14%;
+}
+.activo h6{
+    font-size: 18px;
+    font-weight: 900;
+}
+.card-step  h6 {
+    font-size: 13px;
+}
+.card-step:hover {
+    width: 14%;
+    margin: -1px ;
+}
+@media(max-width: 480px){
+    .card-step {
+        width: 98%;
+        margin: 1% 1%;
+    }
+    .activo {
+        width: 100%;
+    }
+
+    .card-step:hover {
+        width: 100%;
+        margin: -1px ;
+    }
+}
+
+@media(max-width: 900px){
+    .card-step {
+        width: 30%;
+        margin: 1% 1%;
+    }
+    .activo {
+        width: 32%;
+    }
+
+    .card-step:hover {
+        width: 32%;
+        margin: -1px ;
+    }
+}
+
+.card-step.verificado {
+    /* box-shadow: 0px 0px 10px #33bc73; */
+    border: 5px solid #33bc73 ;
+}
+
+.card-step.verificado span,
+.card-step.verificado h6 {
+    color: #33bc73;
+}
+
+.card-step.desativado {
+    /* box-shadow: 0px 0px 10px gray; */
+    border: 5px solid gray ;
+}
+
+.card-step.desativado span,
+.card-step.desativado h6 {
+    color: gray;
+}
+
+.card-step.tramite {
+    /* box-shadow: 0px 0px 10px #0e9fb0; */
+    border: 5px solid #0e9fb0 ;
+}
+
+.card-step.tramite span,
+.card-step.tramite h6 {
+    color: #0e9fb0;
+}
+
+.ayudas .titulo{
+    color: #0056b3;
+}

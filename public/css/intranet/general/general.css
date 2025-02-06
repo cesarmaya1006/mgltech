@@ -1,0 +1,197 @@
+.sombra {
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.mini_sombra {
+    box-shadow: 5px 5px 3px 0px rgba(0, 0, 0, 0.75);
+}
+.mini_sombra_ligh {
+    box-shadow: 5px 5px 3px 0px rgba(255, 255, 255, 0.75);
+}
+
+.btn-sombra {
+    box-shadow: 5px 5px 3px 0px rgba(0, 0, 0, 0.75);
+}
+
+.btn-mini_sombra {
+    box-shadow: 3px 3px 1px 0px rgba(0, 0, 0, 0.75);
+}
+
+.sombra_general {
+    -webkit-box-shadow: 8px 8px 4px 0px rgba(0, 0, 0, 0.85);
+    -moz-box-shadow: 8px 8px 4px 0px rgba(0, 0, 0, 0.85);
+    box-shadow: 8px 8px 4px 0px rgba(0, 0, 0, 0.85);
+}
+
+.mini_sombra_general {
+    -webkit-box-shadow: 4px 4px 2px 0px rgba(0, 0, 0, 0.85);
+    -moz-box-shadow: 4px 4px 2px 0px rgba(0, 0, 0, 0.85);
+    box-shadow: 4px 4px 2px 0px rgba(0, 0, 0, 0.85);
+}
+
+.btn-accion-tabla {
+    cursor: pointer;
+    border: none;
+    background: 0;
+    padding: 0 0 0 5px;
+    font-size: 14px !important;
+    line-height: 1.5;
+}
+
+.box-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5% 0;
+}
+
+.img-circle {
+    background-color: white;
+    padding: 5px;
+    min-width: 40px;
+    min-height: 40px;
+}
+
+label.requerido:after {
+    content: ' *';
+    color: red;
+}
+
+.card-proyectos {
+    -webkit-box-shadow: 5px 5px 2px 0px rgba(0, 0, 0, 0.50);
+    -moz-box-shadow: 5px 5px 2px 0px rgba(0, 0, 0, 0.50);
+    box-shadow: 5px 5px 2px 0px rgba(0, 0, 0, 0.50);
+}
+
+
+
+.card-outline {
+    border-image: linear-gradient(45deg, rgb(0, 95, 131), rgb(0, 188, 181)) 1;
+}
+
+
+.results tr[visible='false'],
+.no-result {
+    display: none;
+}
+
+.results tr[visible='true'] {
+    display: table-row;
+}
+
+.remitente {
+    position: relative;
+    right: 0;
+}
+
+.buttons-excel {
+    margin-right: 2px;
+}
+
+.btn-xs {
+    padding: 1px 30px !important;
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+    border-radius: 5px !important;
+}
+
+@media (min-width: 375px) {
+    .datos_componente, .datos_componente-sm {
+        font-size: 0.8em;
+    }
+
+    .acordeon_empresa, .acordeon_empresa-sm {
+        font-size: 0.8em;
+    }
+    .tarea_gestpresup_proy, .tarea_gestpresup_proy-sm {
+        font-size: 0.8em;
+    }
+}
+
+@media (min-width: 376px) {
+    .datos_componente, .datos_componente-sm, .datos_componente-md {
+        font-size: 0.9em;
+    }
+
+    .acordeon_empresa, .acordeon_empresa-sm, .acordeon_empresa-md {
+        font-size: 0.9em;
+    }
+    .tarea_gestpresup_proy, .tarea_gestpresup_proy-sm, .tarea_gestpresup_proy-md {
+        font-size: 0.8em;
+    }
+}
+
+@media (min-width: 992px) {
+    .datos_componente, .datos_componente-sm, .datos_componente-md, .datos_componente-lg {
+        font-size: 1em;
+    }
+
+    .acordeon_empresa, .acordeon_empresa-sm, .acordeon_empresa-md, .acordeon_empresa-lg {
+        font-size: 1em;
+    }
+    .tarea_gestpresup_proy, .tarea_gestpresup_proy-sm, .tarea_gestpresup_proy-md, .tarea_gestpresup_proy-lg {
+        font-size: 0.9em;
+    }
+}
+
+@media (min-width: 1200px) {
+    .datos_componente, .datos_componente-sm, .datos_componente-md, .datos_componente-lg, .datos_componente-xl {
+        font-size: 1em;
+    }
+
+    .acordeon_empresa, .acordeon_empresa-sm, .acordeon_empresa-md, .acordeon_empresa-lg, .acordeon_empresa-xl {
+        font-size: 1em;
+    }
+    .tarea_gestpresup_proy, .tarea_gestpresup_proy-sm, .tarea_gestpresup_proy-md, .tarea_gestpresup_proy-lg, .tarea_gestpresup_proy-xl {
+        font-size: 0.9em;
+    }
+}
+
+.w-td-250{
+    min-width: 250px;
+    text-align: justify;
+}
+.w-td-350{
+    min-width: 350px;
+    text-align: justify;
+}
+.w-td-400{
+    min-width: 400px;
+    text-align: justify;
+}
+.w-td-450{
+    min-width: 450px;
+    text-align: justify;
+}
+.w-td-500{
+    min-width: 500px;
+    text-align: justify;
+}
+
+.navbar-badge {
+    position: absolute;
+    top: 9px;
+    right: 5px;
+    padding: 2px 4px;
+    font-size: 0.6rem;
+    font-weight: 400;
+  }
+
+  /* Chat  */
+  /* ================================================================================ */
+  #listaUsuarios{
+    background-color: rgba(243, 243, 243, 0.76);
+  }
+  #cajaChat{
+
+  }
+  .itemUsuario:hover{
+    background-color: rgba(0, 0, 0, 0.50);
+    color: white;
+  }
+.itemActivo{
+    background-color: rgba(157, 179, 182, 0.432);
+    color: black;
+}
+
+
+/* ================================================================================ */

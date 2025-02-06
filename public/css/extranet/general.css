@@ -1,0 +1,114 @@
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    filter: blur(2px);
+}
+
+/* Add some content at the bottom of the video/page */
+
+.contenido {
+    position: fixed;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.25);
+    color: #f1f1f1;
+    width: 100%;
+    padding: 20px;
+}
+
+#linea_adorno {
+    background-color: #0f5c99;
+    width: 30vw;
+    height: 4vh;
+    position: fixed;
+    top: 12vh;
+    right: 0vw;
+    z-index: 500;
+    border-radius: 15px 0px 0px 15px;
+}
+
+#linea_interior {
+    background-color: #20a9e0;
+    width: 80%;
+    margin-left: 20%;
+    height: 100%;
+    border-radius: 15px 0px 0px 15px;
+}
+
+:root {
+    --bs-azulmayo: #4b81d1be;
+    --bs-blue: #0d6efd;
+    --bs-indigo: #6610f2;
+    --bs-purple: #6f42c1;
+    --bs-pink: #d63384;
+    --bs-red: #dc3545;
+    --bs-orange: #fd7e14;
+    --bs-yellow: #ffc107;
+    --bs-green: #198754;
+    --bs-teal: #20c997;
+    --bs-cyan: #0dcaf0;
+    --bs-white: #fff;
+    --bs-gray: #6c757d;
+    --bs-gray-dark: #343a40;
+    --bs-primary: #0d6efd;
+    --bs-secondary: #6c757d;
+    --bs-success: #198754;
+    --bs-info: #0dcaf0;
+    --bs-warning: #ffc107;
+    --bs-danger: #dc3545;
+    --bs-light: #f8f9fa;
+    --bs-dark: #212529;
+    --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+}
+
+.bg-legal1 {
+    background-color: #6D53A6;
+}
+
+.bg-legal2 {
+    background-color: #4BA69D;
+}
+
+.bg-legal3 {
+    background-color: #F2CB9B;
+}
+
+.bg-legal4 {
+    background-color: #F24949;
+}
+
+.bg-legal5 {
+    background-color: #F2D8D8;
+}
+
+label.requerido:after {
+    content: ' *';
+    color: red;
+}
+
+body {
+    background-image: linear-gradient(to bottom right, #f9cc5d, #f38782, #3359fa 85%);
+}
+
+.header h2 a {
+
+}
+.card-title {
+    color: #3359fa;
+}
+
+.card-text {
+    color: #3359fa;
+}
+
+.btn-primary {
+    background-color: white;
+    border-color: #3359fa;
+    color: #3359fa;
+    font-weight: bold;
+    border-radius: 50px;
+}
