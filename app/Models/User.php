@@ -3,6 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Models\Empresa\Empleado;
+use App\Models\Sistema\Mensaje;
+use App\Models\Sistema\Notificacion;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -68,6 +72,30 @@ class User extends Authenticatable
         ];
     }
     //==================================================================================
+    //----------------------------------------------------------------------------------
+    public function empleado()
+    {
+        return $this->belongsTo(Empleado::class, 'id');
+    }
+    //----------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------
+    //==================================================================================
+    //----------------------------------------------------------------------------------
+    public function notificaciones()
+    {
+        return $this->hasMany(Notificacion::class, 'usuario_id', 'id');
+    }
+    //----------------------------------------------------------------------------------
+    public function mensajes_remitente()
+    {
+        return $this->hasMany(Mensaje::class, 'remitente_id', 'id');
+    }
+    //----------------------------------------------------------------------------------
+    public function mensajes_destinatario()
+    {
+        return $this->hasMany(Mensaje::class, 'destinatario_id', 'id');
+    }
+    //----------------------------------------------------------------------------------
     //==================================================================================
     public function setSession()
     {

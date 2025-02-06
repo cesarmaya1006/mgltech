@@ -119,6 +119,7 @@ return [
     | Supported drivers: "file", "cache"
     |
     */
+    'driver' => \Intervention\Image\Drivers\Gd\Driver::class,
 
     'maintenance' => [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),

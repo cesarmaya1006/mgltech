@@ -16,10 +16,18 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         $this->call([
+            TablaTipoDocumentos::class,
             TablaRoles::class,
             TablaMenuSeeder::class,
+            TablaGruposEmpresas::class,
+            Tabla_Empresas::class,
+            TablaAreas::class,
+            TablaCargos::class,
             TablaUser::class,
-
+            TablaProyectos::class,
+            TablaComponentes::class,
+            TablaTareas::class,
+            TablaOpcionArchivo::class,
 
         ]);
     }

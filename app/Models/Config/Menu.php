@@ -2,6 +2,7 @@
 
 namespace App\Models\Config;
 
+use App\Models\Empresa\Empresa;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,6 +20,10 @@ class Menu extends Model
         return $this->belongsToMany(Role::class,'menu_rol','menu_id','rol_id');
     }
     //---------------------------------------------------------------
+    public function empresas_menu ()
+    {
+        return $this->belongsToMany(Empresa::class,'menu_empresas','menu_id','empresa_id');
+    }
     //---------------------------------------------------------------
     public function getHijos($padres, $line)
     {

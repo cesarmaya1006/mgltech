@@ -19,7 +19,6 @@ function ajaxRequest(url, data) {
         type: 'POST',
         data: data,
         success: function(respuesta) {
-            console.log(respuesta);
             Sistema.notificaciones(respuesta.respuesta, 'Sistema', respuesta.tipo);
         }
     });

@@ -1,9 +1,14 @@
+@yield('php_funciones')
 <!DOCTYPE html>
 <html lang="es">
 <head>
     @include('intranet.layout.head')
     @yield('css_pagina')
     <!-- Scripts -->
+    @vite(['resources/scss/app.scss', 'resources/js/app.js'])
+
+    <!-- Styles -->
+    @livewireStyles
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
