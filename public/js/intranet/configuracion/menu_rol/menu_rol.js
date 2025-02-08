@@ -9,7 +9,7 @@ $('.menu_rol').on('change', function() {
     } else {
         data.estado = 0
     }
-    ajaxRequest('/configuracion_sis/menu_rol/guardar', data);
+    ajaxRequest('/dashboard/configuracion_sis/permisos_menus_rol/guardar', data);
 });
 
 function ajaxRequest(url, data) {
@@ -18,6 +18,7 @@ function ajaxRequest(url, data) {
         type: 'POST',
         data: data,
         success: function(respuesta) {
+            console.log(respuesta);
             Sistema.notificaciones(respuesta.respuesta, 'Sistema', respuesta.tipo);
         }
     });

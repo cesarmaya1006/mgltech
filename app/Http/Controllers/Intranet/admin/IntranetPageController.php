@@ -223,7 +223,7 @@ class IntranetPageController extends Controller
                 $diff = $date1->diff($date2);
                 $notificacion['diff_creacion'] = $this->get_format($diff);
             }
-            return response()->json(['notificaciones' => $notificaciones]);
+            return response()->json(['notificaciones' => $notificaciones, 'cant_notificaciones' => $notificaciones->count() ]);
         } else {
             abort(404);
         }

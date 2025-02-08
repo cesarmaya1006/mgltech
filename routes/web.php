@@ -39,7 +39,7 @@ use App\Http\Controllers\Proyectos\ProyectoController;
 use App\Http\Controllers\Proyectos\TareaController;
 use App\Http\Middleware\AdminEmp;
 use App\Http\Middleware\AdminSistema;
-use App\Models\Empresa\Empleado;
+use App\Http\Middleware\Empleado;
 use Illuminate\Support\Facades\Route;
 
 
@@ -213,7 +213,6 @@ Route::prefix('dashboard')->middleware(['auth:sanctum',config('jetstream.auth_se
             Route::middleware(AdminSistema::class)->group(function () {
                 Route::get('proyecto_empresas', 'proyecto_empresas')->name('proyectos.proyecto_empresas');
             });
-
             Route::get('', 'index')->name('proyectos.index');
             Route::get('crear', 'create')->name('proyectos.create');
             Route::get('editar/{id}', 'edit')->name('proyectos.edit');

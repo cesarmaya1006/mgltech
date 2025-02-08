@@ -1,0 +1,56 @@
+body{
+	background-image: linear-gradient(to top, #FFF 0%, #fbb800 100%);
+	background-repeat: no-repeat;
+	height: 100vh;
+    padding:0;
+    margin:0;
+
+}
+
+ .box{
+	background-color:#fff;
+	padding: 10px 30px;
+	-webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    border-radius: 5px;
+}
+
+img {
+	width: 300px;
+	padding-top: 10px;
+	margin: auto;
+	display: none;
+}
+
+h3 {
+	margin: auto;
+	padding: 10px 0;
+	display: none;
+}
+
+.form-control {
+	display: none;
+}
+
+.checkbox {
+	position: relative;
+	left: 200px;
+	display: none;
+	color: #337ab7;
+}
+
+a {
+	position: relative;
+	right: 200px;
+	display: none;
+}
+
+.btn-warning {
+	display: none;
+}
+.btn-sombra {
+    box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+

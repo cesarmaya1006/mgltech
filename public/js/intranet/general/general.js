@@ -1,4 +1,3 @@
-$('#popoverData').popover();
 var Sistema = (function () {
     return {
         validacionGeneral: function (id, reglas, mensajes) {
@@ -83,9 +82,9 @@ $(document).ready(function () {
     //setInterval(getmensajes_dest_rem_ult, 5000);
     //setInterval(get_all_nuevos_mensajes, 5000);
     //get_all_nuevos_mensajes();
-    //setInterval(getMensajesNuevosDestinatarioChat,2000);
-    //setInterval(getMensajesNuevosEmpleadosChat,2000);
-    //getNotificacionesEmpleado();
+    setInterval(getMensajesNuevosDestinatarioChat,2000);
+    setInterval(getMensajesNuevosEmpleadosChat,2000);
+    setInterval(getNotificacionesEmpleado,2000);
     // * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - * - *
     $('#abrirModalChat').on("click", function () {
 
@@ -612,7 +611,7 @@ function abrirChatEspecifico (li,destinatario_id){
     myModal.show();
     activoFunction(li,destinatario_id);
 }
-/*
+
 function getNotificacionesEmpleado(){
     const data_url = $('#getNotificacionesEmpleado').attr('data_url');
     $.ajax({
@@ -620,7 +619,8 @@ function getNotificacionesEmpleado(){
         url: data_url,
         type: "GET",
         success: function (respuesta) {
-            console.log(respuesta);
+            var cant_notificaciones = parseInt(respuesta.cant_notificaciones);
+            $('#campana_numero').html(cant_notificaciones);
             var li_html = '';
             if (respuesta.notificaciones.length > 0) {
                 var badge_color = '';
@@ -634,34 +634,18 @@ function getNotificacionesEmpleado(){
                     badge_color = 'danger';
                 }
 
-                li_html += '<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">';
-                li_html += '<i class="far fa-bell" style="font-size: 1.5em;"></i>';
-                li_html += '<span class="badge badge-'+badge_color+' navbar-badge" style="font-size: 0.78em;position: absolute;">'+respuesta.notificaciones.length+'</span>';
-                li_html += '</a>';
-                li_html += '<ul class="dropdown-menu dropdown-menu-right" id="menu_badge_cant_notificaciones_2" style="left: inherit; right: 0px;font-size: 0.75em;width: 350px;">';
-                li_html += '<li><span class="dropdown-item">'+respuesta.notificaciones.length+' Notificaciones</span></li>';
-                li_html += '<li><hr class="dropdown-divider"></li>';
-                var i = 0;
+                li_html += '<span class="dropdown-item dropdown-header">'+cant_notificaciones+' Notificaciones</span>';
                 $.each(respuesta.notificaciones, function (index, notificacion) {
-                    i ++;
-                    var link = '';
-                    var ubicacion = notificacion.link.search("dashboard");
-                    link = location.href.substring(0,location.href.search(("dashboard")))+ notificacion.link.substring(ubicacion)+'/' + notificacion.id;
-                    li_html += '<li>';
-                    li_html += '<a class="dropdown-item d-flex flex-row" href="'+link+'">';
-                    li_html += '<div class="row">';
-                    li_html += '<div class="col-12"><span class="float-right text-sm ml-5"><strong style="font-size: 0.75em;">'+notificacion.diff_creacion+'</strong></span></div>';
-                    li_html += '<div class="col-12"><p class="text-wrap"><i class="fas fa-project-diagram mr-3"></i>' +notificacion.mensaje+ '</p></div>';
-                    li_html += '</div>';
+                    li_html += '<div class="dropdown-divider"></div>';
+                    li_html += '<a href="#" class="dropdown-item" style="font-size: 0.9em;">';
+                    li_html += '<i class="fas fa-share-alt mr-2"></i> '+ notificacion.titulo.substring(0, 30) + '...';
+                    li_html += '<span class="float-right text-muted text-sm"><span style="font-size: 0.8em;">'+notificacion.diff_creacion+'</span></span>';
                     li_html += '</a>';
-                    li_html += '</li>';
-                    if(i === 3) {
-                        return false; // breaks
-                    }
                 });
-                li_html += '<li><hr class="dropdown-divider"></li>';
-                li_html += '<li><a class="dropdown-item" href="#" onclick="abrirNotificaciones()">Ver Todas las Notificaciones</a></li>';
-                li_html += '</ul>';
+                li_html += '<div class="dropdown-divider"></div>';
+                li_html += '<a href="#" class="dropdown-item dropdown-footer">Ver Todas las Notificaciones</a>';
+
+                //---------------------------------------------------------------------------------------
                 $('#li_notificaciones').html(li_html);
             } else {
                 console.log('nopp');
@@ -681,6 +665,7 @@ function abrirNotificaciones(){
             console.log(respuesta);
             var tbody_html = '';
             if (respuesta.notificaciones.length > 0) {
+                $('#campana_numero').text(toString(respuesta.notificaciones.length));
                 $.each(respuesta.notificaciones, function (index, notificacion) {
                     var link = '';
                     var ubicacion = notificacion.link.search("dashboard");
@@ -703,4 +688,4 @@ function abrirNotificaciones(){
 }
  function verNotificacion(link){
     window.location.href = link;
- }*/
+ }

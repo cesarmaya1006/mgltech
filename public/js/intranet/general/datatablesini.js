@@ -132,7 +132,7 @@ $(document).ready(function () {
 
     $(".tabla_data_table_m").DataTable({
         lengthMenu: [10, 15, 25, 50, 75, 100],
-        pageLength: 10,
+        pageLength: 5,
         dom: "lBfrtip",
         buttons: [
             "excel",

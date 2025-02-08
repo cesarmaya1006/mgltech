@@ -208,7 +208,7 @@ function llenarTablaPermisos(data_url,data){
                 $("#thead_permisos").html(respuesta_thead);
                 $("#tbody_permisos").html(respuesta_tbody);
                 $('#caja_area_cargo').removeClass('d-none');
-                asignarDataTable_ajax('#tabla_permisos_cargos',10,"portrait","Legal","listado de tareas",false);
+                asignarDataTableAjax('#tabla_permisos_cargos',10,"portrait","Legal","listado de tareas",false);
             }
         },
         error: function () {},
@@ -259,7 +259,7 @@ function modalPermisosEmpleados(cargo_id,permiso_id,tituloPermiso){
             var table = new DataTable('#tabla_permisos_empleados');
             table.destroy();
             $('#tabla_permisos_empleados_tbody').html(html_body);
-            asignarDataTable_ajax('#tabla_permisos_empleados',10,"portrait","Legal","listado de tareas",false);
+            asignarDataTableAjax('#tabla_permisos_empleados',10,"portrait","Legal","listado de tareas",false);
         },
         error: function () {},
     });
