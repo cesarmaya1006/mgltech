@@ -375,7 +375,7 @@ function cargarcanvas(busqueda_, id_, titulo_, titulo_tabla, annoBusqueda, tipoG
         data: data,
         success: function(respuesta) {
 
-            console.log(respuesta);
+
 
             var html_ = "";
 

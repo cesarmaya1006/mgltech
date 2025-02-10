@@ -14,7 +14,7 @@ $(document).ready(function() {
                 type: 'GET',
                 data: data,
                 success: function(respuesta) {
-                    console.log(respuesta);
+
                     $html_ = '';
                     $.each(respuesta.argumentos, function(index, argumento) {
                         $html_ += '<div class="col -12 col-md-10">';
@@ -347,7 +347,7 @@ $(document).ready(function() {
                 url: url_t,
                 type: 'GET',
                 success: function(respuesta) {
-                    console.log(respuesta);
+
                     respuesta_html = '';
                     respuesta_html += '<option value="">---Seleccione---</option>';
                     $.each(respuesta, function(index, item) {
@@ -777,7 +777,7 @@ function busquedaAvanzada() {
             type: 'GET',
             data: data,
             success: function(respuesta) {
-                console.log(respuesta);
+
                 $html_ = '';
                 if (tipowiku_val == 'Normas') {
                     $.each(respuesta, function(index, norma) {

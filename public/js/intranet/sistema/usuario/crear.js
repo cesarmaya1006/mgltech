@@ -117,7 +117,7 @@ $(document).ready(function() {
             type: "GET",
             data: data,
             success: function (respuesta) {
-                console.log(respuesta);
+
                 var respuesta_html = "";
                 if (respuesta.niveles.length > 0) {
                     respuesta_html += '<option value="">Elija un Nivel</option>';

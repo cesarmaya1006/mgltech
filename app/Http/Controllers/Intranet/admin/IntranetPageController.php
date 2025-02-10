@@ -78,7 +78,7 @@ class IntranetPageController extends Controller
         if ($request->ajax()) {
             $ruta = Config::get('constantes.folder_img_usuarios');
             $ruta = trim($ruta);
-            $superAdminstradores = User::role('Super Administrador')->get();
+            $superAdminstradores = User::role('Administrador Sistema')->get();
 
             if (session('rol_principal_id') == 1) {
                 $empleados = User::role('Empleado')->with('empleado')->whereHas('empleado', function ($q) {

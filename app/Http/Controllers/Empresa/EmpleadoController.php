@@ -208,7 +208,7 @@ class EmpleadoController extends Controller
         }
 
         if (isset($request['empresa_id'])) {
-            $usuario_editar->givePermissionTo(['proyectos.create', 'proyectos.edit', 'proyectos.detalle', 'proyectos.gestion']);
+            $usuario_editar->empleado->empresas_tranv()->sync($request['empresa_id']);
         }
 
         return redirect('dashboard/configuracion/empleados')->with('mensaje', 'Empleado actualizado con éxito');

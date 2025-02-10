@@ -143,7 +143,7 @@ $(document).ready(function () {
             type: "GET",
             success: function (respuesta) {
                 var htmlModal = '';
-                console.log(respuesta);
+
                 $.each(respuesta.grupos, function (index, grupo) {
                 htmlModal +='<tr>';
                 htmlModal +='<th scope="row">'+grupo.grupo+'</th>';
@@ -169,14 +169,12 @@ $(document).ready(function () {
         e.preventDefault(); // avoid to execute the actual submit of the form.
         var form = $(this);
         var actionUrl = form.attr('action');
-        console.log('sip');
         $.ajax({
             type: "POST",
             url: actionUrl,
             data: form.serialize(), // serializes the form's elements.
             success: function(data)
             {
-                console.log(data);
                 var htmlModal = '';
                 htmlModal +='<tr>';
                 htmlModal +='<th scope="row">'+data.grupo.grupo+'</th>';
@@ -233,7 +231,6 @@ $(document).ready(function () {
             data: data,
             success: function (respuesta) {
                 var respuesta_html = "";
-                console.log(data_url);
                 $.each(respuesta.proyectos, function (index, proyecto) {
                     respuesta_html += "<tr>";
                     respuesta_html += '<td class="project-actions text-right">';

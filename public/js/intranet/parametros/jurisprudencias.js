@@ -76,10 +76,9 @@ $(document).ready(function() {
                     type: 'GET',
                     data: data,
                     success: function(respuesta) {
-                        console.log(respuesta);
+
                         respuesta_html = '';
                         $.each(respuesta, function(index, item) {
-                            console.log(item['sala'] + ' - ' + sala)
                             if (item['sala'] == sala) {
                                 respuesta_html += '<option value="' + item['id'] + '" selected>' + item['sala'] + '</option>';
 
@@ -445,7 +444,7 @@ function cargarSalas(url_t, ente_id) {
         type: 'GET',
         data: data,
         success: function(respuesta) {
-            console.log(respuesta);
+
             if (respuesta.length > 0) {
                 respuesta_html = '<option value="">---Seleccione---</option>';
                 $.each(respuesta, function(index, item) {
@@ -471,7 +470,7 @@ function cargarSubSalas(url_t, sala_id) {
         type: 'GET',
         data: data,
         success: function(respuesta) {
-            console.log(respuesta);
+
             if (respuesta.length > 0) {
                 respuesta_html = '<option value="">---Seleccione---</option>';
                 $.each(respuesta, function(index, item) {

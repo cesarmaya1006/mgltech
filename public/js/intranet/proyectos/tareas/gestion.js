@@ -57,7 +57,7 @@ $(document).ready(function () {
             type: "GET",
             data: data,
             success: function (respuesta) {
-                console.log(respuesta);
+
                 var resp_body ='';
                 $.each(respuesta.historiales, function (index, historial) {
                     resp_body += '<tr>';

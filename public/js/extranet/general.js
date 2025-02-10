@@ -26,7 +26,6 @@ $(document).ready(function() {
             type: 'GET',
             data: data,
             success: function(respuesta) {
-                console.log(respuesta);
                 respuesta_html = '';
                 $.each(respuesta, function(index, item) {
                     respuesta_html += '<option value="' + item['id'] + '">' + item['municipio'] + '</option>';

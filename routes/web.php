@@ -260,8 +260,8 @@ Route::prefix('dashboard')->middleware(['auth:sanctum',config('jetstream.auth_se
         // ------------------------------------------------------------------------------------
         Route::controller(HistorialController::class)->prefix('historiales')->group(function () {
             Route::get('crear/{id}', 'create')->name('historiales.create');
-            Route::post('guardar', 'store')->name('historiales.store');
             Route::post('guardar', 'store_subtarea')->name('historiales.store_subtarea');
+            Route::post('guardar', 'store')->name('historiales.store_tarea');
             Route::get('gestion/{id}', 'gestion')->name('historiales.gestion');
             Route::post('guardar_doc_hist', 'guardar_doc_hist')->name('historiales.guardar_doc_hist');
         });
@@ -294,6 +294,10 @@ Route::prefix('dashboard')->middleware(['auth:sanctum',config('jetstream.auth_se
             Route::get('', 'index')->name('archivo-modulo.index');
             Route::controller(HojasDeVidaController::class)->prefix('hojas_vida')->group(function () {
                 Route::get('', 'index')->name('hojas_vida.index');
+                Route::get('archivo-hojas_de_vida/{id}/editar', 'editar')->name('hojas_vida.hojas_de_vida-editar');
+                Route::get('archivo-hojas_de_vida/{id}/detalles', 'detalles')->name('hojas_vida.hojas_de_vida-detalles');
+                Route::get('getUsuariosHojasVida','getUsuariosHojasVida')->name('getUsuariosHojasVida');
+
             });
             Route::controller(ManualesController::class)->prefix('manuales')->group(function () {
                 Route::get('', 'index')->name('manuales.index');

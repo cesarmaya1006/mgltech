@@ -28,6 +28,8 @@ return new class extends Migration
 
             $table->string('direccion');
 
+            $table->date('vinculacion')->default(date('Y-m-d'))->nullable();
+
             $table->string('foto', 255)->default('usuario-inicial.jpg');
 
             $table->boolean('lider')->default(0);

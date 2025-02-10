@@ -20,7 +20,7 @@ function ajaxRequest(url, data, sede_id_var, departamento_id_var, data_sedes) {
         type: 'POST',
         data: data,
         success: function(respuesta) {
-            console.log(respuesta);
+
             for (let i = 1; i <= data_sedes_c; i++) {
                 if (sede_id_var_c != i) {
                     $("#sede_depto-" + i + "-" + departamento_id_var_c).prop('checked', false);

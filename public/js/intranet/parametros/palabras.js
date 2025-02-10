@@ -23,7 +23,7 @@ $(document).ready(function() {
             type: 'POST',
             data: form.serialize(),
             success: function(respuesta) {
-                console.log(respuesta);
+
                 if (respuesta.mensaje == "ok") {
                     form.parents('tr').remove();
                     Sistema.notificaciones('El registro fue eliminado correctamente', 'Sistema', 'success');

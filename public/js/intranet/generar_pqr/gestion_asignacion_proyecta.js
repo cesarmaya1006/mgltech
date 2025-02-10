@@ -46,7 +46,7 @@ window.addEventListener('DOMContentLoaded', function(){
         });
     });
 
-//  Guardar Historial PQR-tarea  
+//  Guardar Historial PQR-tarea
     if(document.querySelector('#guardarHistorialTarea')){
         let guardarHistorialTarea = document.querySelector('#guardarHistorialTarea')
         guardarHistorialTarea.addEventListener('click', function(e){
@@ -54,7 +54,7 @@ window.addEventListener('DOMContentLoaded', function(){
             let url = e.target.getAttribute('data_url')
             let token = e.target.getAttribute('data_token')
             let mensajeHistorial = document.querySelector('#mensaje-historial-tarea').value
-            
+
             if (mensajeHistorial == '') {
                 alert("Debe agregar un historial")
             }else{
@@ -83,7 +83,7 @@ window.addEventListener('DOMContentLoaded', function(){
         })
     }
 
-//  Guardar Historial PQR-peticion  
+//  Guardar Historial PQR-peticion
     if(document.querySelector('.guardarHistorialPeticion')){
         let HistorialPeticiones = document.querySelectorAll('.guardarHistorialPeticion')
         HistorialPeticiones.forEach(btn => btn.addEventListener('click', guardarHistorialPeticiones))
@@ -99,7 +99,7 @@ window.addEventListener('DOMContentLoaded', function(){
             }else{
                 guardarHistorialPeticion()
             }
-    
+
             function guardarHistorialPeticion (){
                 let data = {
                     mensajeHistorial,
@@ -119,7 +119,7 @@ window.addEventListener('DOMContentLoaded', function(){
                     }
                 });
             }
-        }   
+        }
     }
 
 // Guardar asignar petición a funcionario
@@ -202,7 +202,7 @@ window.addEventListener('DOMContentLoaded', function(){
         }
     }
 
-// Ajuste visual para formulario prorroga 
+// Ajuste visual para formulario prorroga
     $('input[type=radio][name=prorroga]').on('change', function() {
         switch ($(this).val()) {
             case '1':
@@ -214,7 +214,7 @@ window.addEventListener('DOMContentLoaded', function(){
         }
     });
 
-// Guardar prorroga 
+// Guardar prorroga
     if(document.querySelector('#guardarProrroga')){
         let guardarProrroga = document.querySelector('#guardarProrroga')
         guardarProrroga.addEventListener('click', function(e){
@@ -227,7 +227,7 @@ window.addEventListener('DOMContentLoaded', function(){
             if(document.querySelector('.plazoRecurso')){
                 plazoRecurso = document.querySelector('.plazoRecurso').value
             }
-    
+
             if(plazo_prorroga != '' && prorroga_pdf != ''){
                 let data = {
                     prorroga : 1,
@@ -243,7 +243,7 @@ window.addEventListener('DOMContentLoaded', function(){
                     data: data,
                     success: function(respuesta) {
                         location.reload();
-        
+
                     },
                     error: function(error) {
                         console.log(error)
@@ -255,7 +255,7 @@ window.addEventListener('DOMContentLoaded', function(){
         })
     }
 
-//Guardar respuesta anexo  
+//Guardar respuesta anexo
 if(document.querySelector('.btn-pqr-anexo')){
     let btnRespuesta = document.querySelector('.btn-pqr-anexo')
     btnRespuesta.addEventListener('click', function(e){
@@ -278,7 +278,7 @@ if(document.querySelector('.btn-pqr-anexo')){
                 headers: { 'X-CSRF-TOKEN': token },
                 data: data,
                 success: function(respuesta) {
-                    // console.log(respuesta)
+
                 },
                 error: function(error) {
                     console.log(error.responseJSON)
@@ -290,7 +290,7 @@ if(document.querySelector('.btn-pqr-anexo')){
                 headers: { 'X-CSRF-TOKEN': token },
                 data: data,
                 success: function(respuesta) {
-                    // console.log(respuesta)
+
                     window.location = "/funcionario/gestion_pqr"
                 },
                 error: function(error) {
@@ -303,14 +303,14 @@ if(document.querySelector('.btn-pqr-anexo')){
     })
 }
 
-// Guardar estado 
+// Guardar estado
 if(document.querySelector('.btn-estado')){
     let btnEstados = document.querySelectorAll('.btn-estado')
     btnEstados.forEach(btn=> btn.addEventListener('click', guardarEstado))
 
     function guardarEstado(btn){
         btn.preventDefault()
-        let btnE = btn.target 
+        let btnE = btn.target
         if (btnE.tagName === 'I') {
             padreEstado = btnE.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement
             btnE = btnE.parentElement.parentElement
@@ -341,7 +341,7 @@ if(document.querySelector('.btn-estado')){
     }
 }
 
-//Guardar resuelve  
+//Guardar resuelve
 if(document.querySelector('.btn-pqr-resuelve')){
     let btnResuelve = document.querySelector('.btn-pqr-resuelve')
     btnResuelve.addEventListener('click', function(e){
@@ -363,7 +363,7 @@ if(document.querySelector('.btn-pqr-resuelve')){
                 data: data,
                 success: function(respuesta) {
                     location.reload();
-    
+
                 },
                 error: function(error) {
                     console.log(error)
@@ -375,7 +375,7 @@ if(document.querySelector('.btn-pqr-resuelve')){
     })
 }
 
-//Eliminar resuelve  
+//Eliminar resuelve
 if(document.querySelectorAll('.eliminarResuelve')){
     let btnEliminaResuelves = document.querySelectorAll('.eliminarResuelve')
     btnEliminaResuelves.forEach(btnEliminar => {
@@ -418,7 +418,7 @@ if(document.querySelectorAll('.eliminarResuelve')){
     })
 }
 
-//Editar resuelve  
+//Editar resuelve
 if(document.querySelectorAll('.editarResuelve')){
     let resuelves = document.querySelectorAll('.editarResuelve')
     resuelves.forEach(resuelve => {
@@ -442,7 +442,7 @@ if(document.querySelectorAll('.editarResuelve')){
     }
 }
 
-//Guardar Editar resuelve  
+//Guardar Editar resuelve
 if(document.querySelector('.editarResuelveGuardar')){
     let btnResuelve = document.querySelector('.editarResuelveGuardar')
     btnResuelve.addEventListener('click', function(resuelve){
@@ -471,7 +471,7 @@ if(document.querySelector('.editarResuelveGuardar')){
     })
 }
 
-//Editar orden resuelve  
+//Editar orden resuelve
 if(document.querySelector('.btn-ordenar')){
     let btnOrdenar = document.querySelector('.btn-ordenar')
     btnOrdenar.addEventListener('click', function(btn){
@@ -491,7 +491,7 @@ if(document.querySelector('.btn-ordenar')){
     })
 }
 
-//Guardar orden resuelve  
+//Guardar orden resuelve
 if(document.querySelector('.btn-ordenar-guardar')){
     let btnGuardarOrden = document.querySelector('.btn-ordenar-guardar')
     btnGuardarOrden.addEventListener('click', function(btn){
@@ -524,7 +524,7 @@ if(document.querySelector('.btn-ordenar-guardar')){
                     headers: { 'X-CSRF-TOKEN': token },
                     data: data,
                     success: function(respuesta) {
-                        // console.log(respuesta)
+
                     },
                     error: function(error) {
                         console.log(error)
@@ -563,7 +563,7 @@ if(document.querySelector('.btn-pqr-resuelve-recurso')){
                 data: data,
                 success: function(respuesta) {
                     location.reload();
-    
+
                 },
                 error: function(error) {
                     console.log(error)
@@ -642,7 +642,7 @@ if(document.querySelectorAll('.editarResuelveRecurso')){
     }
 }
 
-//Guardar Editar resuelve  
+//Guardar Editar resuelve
 if(document.querySelector('.editarResuelveRecursoGuardar')){
     let btnResuelve = document.querySelector('.editarResuelveRecursoGuardar')
     btnResuelve.addEventListener('click', function(resuelve){
@@ -671,7 +671,7 @@ if(document.querySelector('.editarResuelveRecursoGuardar')){
     })
 }
 
-//Editar orden resuelve  
+//Editar orden resuelve
 if(document.querySelector('.btn-ordenar-recurso')){
     let btnOrdenar = document.querySelector('.btn-ordenar-recurso')
     btnOrdenar.addEventListener('click', function(btn){
@@ -691,7 +691,7 @@ if(document.querySelector('.btn-ordenar-recurso')){
     })
 }
 
-// Guardar orden resuelve  
+// Guardar orden resuelve
 if(document.querySelector('.btn-ordenar-recurso-guardar')){
     let btnGuardarOrden = document.querySelector('.btn-ordenar-recurso-guardar')
     btnGuardarOrden.addEventListener('click', function(btn){
@@ -724,7 +724,7 @@ if(document.querySelector('.btn-ordenar-recurso-guardar')){
                     headers: { 'X-CSRF-TOKEN': token },
                     data: data,
                     success: function(respuesta) {
-                        // console.log(respuesta)
+
                     },
                     error: function(error) {
                         console.log(error)

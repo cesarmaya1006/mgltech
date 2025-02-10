@@ -16,7 +16,7 @@ class ArchivoController extends Controller
     public function index()
     {
         $usuario = User::with('roles')->findOrFail(session('id_usuario'));
-        if ($usuario->hasRole('Super Administrador')) {
+        if ($usuario->hasRole('Administrador Sistema')) {
             $opciones = OpcionArchivo::get();
         } else {
             $opciones = $this->getOpcionesIdsEmpresas($usuario->id);

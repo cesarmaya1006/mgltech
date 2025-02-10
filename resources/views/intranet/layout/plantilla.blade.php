@@ -8,7 +8,7 @@
     <div class="wrapper">
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="{{ asset('imagenes/sistema/icono_sistema.png') }}" alt="AdminLTELogo" height="120" width="120">
+            <img class="animation__shake" src="{{ asset('imagenes/sistema/mgl_logo.png') }}" alt="AdminLTELogo" height="120" width="120">
         </div>
         <!-- Navbar -->
         @include('intranet.layout.navbar')

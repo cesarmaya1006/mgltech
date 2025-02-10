@@ -1,3 +1,4 @@
+<!-- =================================================================================================  -->
 @extends('intranet.layout.app')
 @section('css_pagina')
 @endsection
@@ -13,7 +14,7 @@
     Empresas Editar
 @endsection
 @section('botones_card')
-    @can('empresa.index')
+    @can('permiso.index')
         <a href="{{ route('empresa.index') }}" class="btn btn-success btn-xs btn-sombra text-center pl-5 pr-5 float-md-end" style="font-size: 0.8em;">
             <i class="fas fa-reply mr-2"></i>
             Volver
@@ -21,7 +22,7 @@
     @endcan
 @endsection
 @section('cuerpoPagina')
-    @can('empresa.edit')
+    @can('permiso.edit')
         <div class="row d-flex justify-content-center">
             <form class="col-12 form-horizontal" action="{{ route('empresa.update',['id' => $empresa_edit->id]) }}" method="POST" autocomplete="off" enctype="multipart/form-data">
                 @csrf

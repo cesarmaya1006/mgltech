@@ -18,7 +18,7 @@ class CargoController extends Controller
     {
         $usuario = User::with('roles')->findOrFail(session('id_usuario'));
         $grupos = GrupoEmpresa::get();
-        if ($usuario->hasRole('Super Administrador')) {
+        if ($usuario->hasRole('Administrador Sistema')) {
             return view('intranet.empresa.cargo.index', compact('grupos'));
         } else {
             $grupo = $usuario->empleado->cargo->area->empresa->grupo;
@@ -32,7 +32,7 @@ class CargoController extends Controller
     public function create()
     {
         $usuario = User::with('roles')->findOrFail(session('id_usuario'));
-        if ($usuario->hasRole('Super Administrador')) {
+        if ($usuario->hasRole('Administrador Sistema')) {
             $grupos = GrupoEmpresa::get();
             return view('intranet.empresa.cargo.crear', compact('grupos'));
         } else {
@@ -65,7 +65,7 @@ class CargoController extends Controller
     {
         $usuario = User::with('roles')->findOrFail(session('id_usuario'));
         $cargo_edit = Cargo::findOrFail($id);
-        if ($usuario->hasRole('Super Administrador')) {
+        if ($usuario->hasRole('Administrador Sistema')) {
             $grupos = GrupoEmpresa::get();
             return view('intranet.empresa.cargo.editar', compact('grupos','cargo_edit'));
         } else {

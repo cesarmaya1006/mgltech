@@ -349,7 +349,7 @@ $(document).ready(function() {
             type: 'GET',
             data: data,
             success: function(respuesta) {
-                console.log(respuesta);
+
                 if (respuesta != '') {
                     respuesta_html = '<option value="">---Seleccione---</option>';
                 } else {

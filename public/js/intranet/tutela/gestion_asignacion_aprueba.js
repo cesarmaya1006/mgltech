@@ -24,7 +24,7 @@ window.addEventListener('DOMContentLoaded', function(){
                     headers: { 'X-CSRF-TOKEN': token },
                     data: data,
                     success: function(respuesta) {
-                        // console.log(respuesta)
+
                     },
                     error: function(error) {
                         console.log(error.responseJSON)
@@ -47,7 +47,7 @@ window.addEventListener('DOMContentLoaded', function(){
         })
     }
 
-    //Guardar aprueba y radica anexo  
+    //Guardar aprueba y radica anexo
     if(document.querySelector('.btn-tutela-aprueba-radica')){
         let btnRespuesta = document.querySelector('.btn-tutela-aprueba-radica')
         btnRespuesta.addEventListener('click', function(e){
@@ -72,7 +72,7 @@ window.addEventListener('DOMContentLoaded', function(){
                     headers: { 'X-CSRF-TOKEN': token },
                     data: data,
                     success: function(respuesta) {
-                        // console.log(respuesta)
+
                     },
                     error: function(error) {
                         console.log(error)
@@ -84,7 +84,7 @@ window.addEventListener('DOMContentLoaded', function(){
                     headers: { 'X-CSRF-TOKEN': token },
                     data: data,
                     success: function(respuesta) {
-                        // console.log(respuesta)
+
                     },
                     error: function(error) {
                         console.log(error.responseJSON)
@@ -96,7 +96,7 @@ window.addEventListener('DOMContentLoaded', function(){
                     headers: { 'X-CSRF-TOKEN': token },
                     data: data,
                     success: function(respuesta) {
-                        // console.log(respuesta)
+
                     },
                     error: function(error) {
                         console.log(error.responseJSON)
@@ -114,7 +114,7 @@ window.addEventListener('DOMContentLoaded', function(){
                     headers: { 'X-CSRF-TOKEN': token },
                     data: data2,
                     success: function(respuesta) {
-                        // console.log(respuesta)
+
                     },
                     error: function(error) {
                         console.log(error.responseJSON)
@@ -127,7 +127,7 @@ window.addEventListener('DOMContentLoaded', function(){
                     data: data2,
                     success: function(respuesta) {
                         window.location = "/admin/gestion"
-                        // console.log(respuesta)
+
                     },
                     error: function(error) {
                         console.log(error.responseJSON)
@@ -138,7 +138,7 @@ window.addEventListener('DOMContentLoaded', function(){
             }
         })
     }
-    //Guardar aprueba anexo  
+    //Guardar aprueba anexo
     if(document.querySelector('.btn-tutela-aprueba')){
         let btnRespuesta = document.querySelector('.btn-tutela-aprueba')
         btnRespuesta.addEventListener('click', function(e){
@@ -171,10 +171,10 @@ window.addEventListener('DOMContentLoaded', function(){
                     type: 'POST',
                     headers: { 'X-CSRF-TOKEN': token },
                     data: dataAnexo,
-                    processData: false, 
+                    processData: false,
                     contentType: false,
                     success: function(respuesta) {
-                        // console.log(respuesta)
+
                     },
                     error: function(error) {
                         console.log(error)
@@ -186,7 +186,7 @@ window.addEventListener('DOMContentLoaded', function(){
                     headers: { 'X-CSRF-TOKEN': token },
                     data: data,
                     success: function(respuesta) {
-                        // console.log(respuesta)
+
                     },
                     error: function(error) {
                         console.log(error.responseJSON)

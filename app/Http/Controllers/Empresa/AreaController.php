@@ -20,7 +20,7 @@ class AreaController extends Controller
         $roles = collect($usuario->roles);
         $grupos = GrupoEmpresa::get();
         $areas = Area::get();
-        if ($usuario->hasRole('Super Administrador')) {
+        if ($usuario->hasRole('Administrador Sistema')) {
             return view('intranet.empresa.area.index_admin', compact('grupos'));
         } else {
             $grupo = $usuario->empleado->cargo->area->empresa->grupo;
@@ -34,7 +34,7 @@ class AreaController extends Controller
     public function create()
     {
         $usuario = User::with('roles')->findOrFail(session('id_usuario'));
-        if ($usuario->hasRole('Super Administrador')) {
+        if ($usuario->hasRole('Administrador Sistema')) {
             $grupos = GrupoEmpresa::get();
             return view('intranet.empresa.area.crear', compact('grupos'));
         } else {
@@ -67,8 +67,11 @@ class AreaController extends Controller
     {
         $usuario = User::with('roles')->findOrFail(session('id_usuario'));
         $area_edit = Area::findOrFail($id);
-        if ($usuario->hasRole('Super Administrador')) {
+
+        if ($usuario->hasRole('Administrador Sistema')) {
+
             $grupos = GrupoEmpresa::get();
+
             return view('intranet.empresa.area.editar', compact('grupos','area_edit'));
         } else {
             $grupo = $usuario->empleado->cargo->area->empresa->grupo;
@@ -91,8 +94,8 @@ class AreaController extends Controller
     public function destroy(Request $request, $id)
     {
         if ($request->ajax()) {
-            $empresa = Area::findOrFail($id);
-            if ($empresa->cargos->count() > 0) {
+            $area = Area::findOrFail($id);
+            if ($area->cargos->count() > 0) {
                 return response()->json(['mensaje' => 'ng']);
             } else {
                 if (Area::destroy($id)) {

@@ -62,10 +62,7 @@
                                         <span class="text-danger">---</span>
                                     @endif
                                 </td>
-                                <td>
-                                    <span
-                                        class="btn-info btn-xs pl-3 pr-3 d-flex flex-row align-items-center bg-{{ $grupo->estado == 1 ? 'success' : 'gray' }} rounded">{{ $empresa->estado == 1 ? 'Activo' : 'Inactivo' }}</span>
-                                </td>
+                                <td><spanclass="btn-info btn-xs pl-3 pr-3 d-flex flex-row align-items-center bg-{{ $grupo->estado == 1 ? 'success' : 'gray' }} rounded">{{ $empresa->estado == 1 ? 'Activo' : 'Inactivo' }}</spanclass=></td>
                                 <td class="d-flex justify-content-evenly align-items-center">
                                     <a href="{{ route('grupo_empresas.edit', ['id' => $grupo->id]) }}"
                                         class="btn-accion-tabla tooltipsC" title="Editar este registro">

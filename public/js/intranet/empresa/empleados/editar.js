@@ -146,19 +146,19 @@ $(document).ready(function () {
             type: "GET",
             data: data,
             success: function (respuesta) {
-                console.log(respuesta);
+
                 if (respuesta.mensaje =='ok') {
                     input_act.parents("tr:first").remove();
                     var reponsabilidades_activas = parseInt($('#reponsabilidades_activas').val());
-                    console.log(reponsabilidades_activas);
+
                     reponsabilidades_activas = reponsabilidades_activas - 1;
                     $('#reponsabilidades_activas').val(reponsabilidades_activas);
-                    console.log(reponsabilidades_activas);
+
                     if (reponsabilidades_activas == 0) {
-                        console.log('true');
+
                         $('#botonDesactivar').prop("disabled", false);
                     }else{
-                        console.log('false');
+
                         $('#botonDesactivar').prop("disabled", true);
                     }
                     Sistema.notificaciones(respuesta.respuesta, 'Sistema', respuesta.tipo);
@@ -186,19 +186,19 @@ $(document).ready(function () {
                 type: "GET",
                 data: data,
                 success: function (respuesta) {
-                    console.log(respuesta);
+
                     if (respuesta.mensaje =='ok') {
                         input_act.parents("tr:first").remove();
                         var reponsabilidades_activas = parseInt($('#reponsabilidades_activas').val());
-                        console.log(reponsabilidades_activas);
+
                         reponsabilidades_activas = reponsabilidades_activas - 1;
                         $('#reponsabilidades_activas').val(reponsabilidades_activas);
-                        console.log(reponsabilidades_activas);
+
                         if (reponsabilidades_activas == 0) {
-                            console.log('true');
+
                             $('#botonDesactivar').prop("disabled", false);
                         }else{
-                            console.log('false');
+
                             $('#botonDesactivar').prop("disabled", true);
                         }
                         Sistema.notificaciones(respuesta.respuesta, 'Sistema', respuesta.tipo);
@@ -229,19 +229,19 @@ $(document).ready(function () {
                 type: "GET",
                 data: data,
                 success: function (respuesta) {
-                    console.log(respuesta);
+
                     if (respuesta.mensaje =='ok') {
                         input_act.parents("tr:first").remove();
                         var reponsabilidades_activas = parseInt($('#reponsabilidades_activas').val());
-                        console.log(reponsabilidades_activas);
+
                         reponsabilidades_activas = reponsabilidades_activas - 1;
                         $('#reponsabilidades_activas').val(reponsabilidades_activas);
-                        console.log(reponsabilidades_activas);
+
                         if (reponsabilidades_activas == 0) {
-                            console.log('true');
+
                             $('#botonDesactivar').prop("disabled", false);
                         }else{
-                            console.log('false');
+
                             $('#botonDesactivar').prop("disabled", true);
                         }
                         Sistema.notificaciones(respuesta.respuesta, 'Sistema', respuesta.tipo);
@@ -259,7 +259,7 @@ $(document).ready(function () {
     const modalTCP_Empleado = new bootstrap.Modal(document.getElementById('modalTCP_Empleado'));
     $('#boton_desactivar').on("click", function () {
         const reponsabilidades_activas = parseInt($('#reponsabilidades_activas').val());
-        console.log(reponsabilidades_activas);
+
         const data_estado_sweet = parseInt($(this).attr('data_estado'));
         var titulo = "Esta seguro de desactivar al Empleado?";
         var texto = "Esto deshabilitara al empleado para ingreso a cualquier parte del sistema";

@@ -53,11 +53,9 @@ function llenar_tabla_empleados(data,filtro) {
     respuesta_thead_html += '<th class="text-center" ></td>';
     respuesta_thead_html += "</tr>";
     // -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*-
-    $('#tabla_empleados').dataTable().fnDestroy();
     $('#thead_empleados').html(respuesta_thead_html);
     respuesta_tabla_html = "";
     $('#tbody_empleados').html(respuesta_tabla_html);
-    asignarDataTableEmpl();
     // -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*-
     if (filtro =='grupo') {
         $.each(data, function (index, empresa) {
@@ -150,7 +148,7 @@ function llenar_tabla_empleados(data,filtro) {
         });
     } else if(filtro =='area'){
         $.each(data, function (index, cargo) {
-            console.log('area');
+
             $.each(cargo.empleados, function (index, empleado) {
                 respuesta_tabla_html += "<tr>";
                 respuesta_tabla_html += '<td class="text-center">' + empleado.id + "</td>";
@@ -228,45 +226,9 @@ function llenar_tabla_empleados(data,filtro) {
         });
     }
     // -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*-
-    $('#tabla_empleados').dataTable().fnDestroy();
     $('#thead_empleados').html(respuesta_thead_html);
     $('#tbody_empleados').html(respuesta_tabla_html);
-    asignarDataTableEmpl();
-}
-
-function asignarDataTableEmpl() {
-    $('#tabla_empleados').DataTable({
-        lengthMenu: [10, 15, 25, 50, 75, 100],
-        pageLength: 15,
-        dom: "lBfrtip",
-        buttons: [
-            "excel",
-            {
-                extend: "pdfHtml5",
-                orientation: "landscape",
-                pageSize: "Legal",
-                title: $("#titulo_tabla").val(),
-            },
-        ],
-        language: {
-            sProcessing: "Procesando...",
-            sLengthMenu: "Mostrar _MENU_ resultados",
-            sZeroRecords: "No se encontraron resultados",
-            sEmptyTable: "Ningún dato disponible en esta tabla",
-            sInfo: "Mostrando resultados _START_-_END_ de  _TOTAL_",
-            sInfoEmpty:
-                "Mostrando resultados del 0 al 0 de un total de 0 registros",
-            sInfoFiltered: "(filtrado de un total de _MAX_ registros)",
-            sSearch: "Buscar:",
-            sLoadingRecords: "Cargando...",
-            oPaginate: {
-                sFirst: "Primero",
-                sLast: "Último",
-                sNext: "Siguiente",
-                sPrevious: "Anterior",
-            },
-        },
-    });
+    asignarDataTableAjax();
 }
 
 function cargar_id_grupo(){
@@ -288,12 +250,7 @@ function cargar_id_grupo(){
 
                     respuesta_html += '<option value="">Elija empresa</option>';
                     $.each(respuesta.empresas, function (index, item) {
-                        respuesta_html +=
-                            '<option value="' +
-                            item.id +
-                            '">' +
-                            item.empresa +
-                            "</option>";
+                        respuesta_html +='<option value="' + item.id +'">' +item.empresa +"</option>";
                     });
                     $("#empresa_id").html(respuesta_html);
                     $("#caja_empresas").removeClass("d-none");

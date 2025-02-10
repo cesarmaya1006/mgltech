@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Empresa;
 
 use App\Http\Controllers\Controller;
+use App\Models\Empresa\Empleado;
+use App\Models\Empresa\Empresa;
+use App\Models\Empresa\GrupoEmpresa;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HojasDeVidaController extends Controller
@@ -12,7 +16,24 @@ class HojasDeVidaController extends Controller
      */
     public function index()
     {
-        //
+        $usuario = User::findOrFail(session('id_usuario'));
+        if (session('rol_principal_id') < 3) {
+            $grupos = GrupoEmpresa::get();
+        } else {
+            if ($usuario->empleado->empresas_tranv->count() > 0) {
+                $idEmpresas = [];
+                foreach ($usuario->empleado->empresas_tranv as $empresas) {
+                    array_push($idEmpresas, $empresas->id);
+                }
+                $grupos = GrupoEmpresa::whereHas('empresas', function ($q) use ($idEmpresas) {
+                    $q->whereIn('id', $idEmpresas);
+                })->get();
+            } else {
+                $grupos = GrupoEmpresa::where('id', $usuario->empleado->cargo->area->empresa->grupo->id)->get();
+            }
+        }
+
+        return view('intranet.empresa.modulo_archivo.hojas_de_vida.index', compact('grupos', 'usuario'));
     }
 
     /**
@@ -61,5 +82,19 @@ class HojasDeVidaController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function getUsuariosHojasVida(Request $request)
+    {
+        if ($request->ajax()) {
+            $empresa_id = $_GET['id'];
+            $empleados = Empleado::with('cargo')->with('cargo.area')->with('usuario')->whereHas('cargo', function ($q) use($empresa_id) {
+                $q->whereHas('area', function ($r) use($empresa_id) {
+                    $r->where('empresa_id', $empresa_id);
+                });
+            })->get();
+            return response()->json(['empleados' => $empleados]);
+        } else {
+            abort(404);
+        }
     }
 }

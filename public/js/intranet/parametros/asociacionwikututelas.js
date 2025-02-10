@@ -5,12 +5,6 @@ $(document).ready(function() {
 		const wiku_argumento_id = $(this).attr('wiku_argumento_id');
 		const submotivotutela_id = $(this).attr('submotivotutela_id');
 		const tipo_wiku = $(this).attr('tipo_wiku');
-
-        console.log(val_check);
-        console.log(wiku_argumento_id);
-        console.log(submotivotutela_id);
-        console.log(tipo_wiku);
-
 		var data = {
 			wiku_argumento_id: wiku_argumento_id,
 			submotivotutela_id: submotivotutela_id,
@@ -23,8 +17,7 @@ $(document).ready(function() {
 			type: 'GET',
 			data: data,
 			success: function(respuesta) {
-                console.log(respuesta.mensaje);
-				if (respuesta.mensaje == 'ok') {
+                if (respuesta.mensaje == 'ok') {
 					Sistema.notificaciones('Se asocio el submotivo correctamente', 'Sistema', 'success');
 				} else {
 					Sistema.notificaciones('Se elimino la asociación', 'Sistema', 'error');

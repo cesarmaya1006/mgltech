@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Permission;
 
 class TablaOpcionArchivo extends Seeder
 {
@@ -58,5 +59,11 @@ class TablaOpcionArchivo extends Seeder
                 $empresa->opcionesarchivo()->attach($opcion->id);
             }
         }
+        //---------------------------------------------------------------------------------------------
+        $opciones = OpcionArchivo::get();
+        foreach ($opciones as $opcion) {
+            Permission::create(['name' => $opcion->url])->syncRoles(['Administrador Sistema','Administrador Empresa']);
+        }
+        //---------------------------------------------------------------------------------------------
     }
 }

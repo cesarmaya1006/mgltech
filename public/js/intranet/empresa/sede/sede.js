@@ -12,7 +12,7 @@ $(document).ready(function() {
             type: 'GET',
             data: data,
             success: function(respuesta) {
-                console.log(respuesta);
+
                 respuesta_html = '';
                 $.each(respuesta, function(index, item) {
                     respuesta_html += '<option value="' + item['id'] + '">' + item['municipio'] + '</option>';
@@ -50,7 +50,7 @@ $(document).ready(function() {
             type: 'POST',
             data: form.serialize(),
             success: function(respuesta) {
-                console.log(respuesta);
+
                 if (respuesta.mensaje == "ok") {
                     form.parents('tr').remove();
                     Sistema.notificaciones('El registro fue eliminado correctamente', 'Sistema', 'success');

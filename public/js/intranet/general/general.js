@@ -648,7 +648,7 @@ function getNotificacionesEmpleado(){
                 //---------------------------------------------------------------------------------------
                 $('#li_notificaciones').html(li_html);
             } else {
-                console.log('nopp');
+
             }
         },
         error: function () {},
@@ -662,7 +662,7 @@ function abrirNotificaciones(){
         url: data_url,
         type: "GET",
         success: function (respuesta) {
-            console.log(respuesta);
+
             var tbody_html = '';
             if (respuesta.notificaciones.length > 0) {
                 $('#campana_numero').text(toString(respuesta.notificaciones.length));
@@ -679,8 +679,6 @@ function abrirNotificaciones(){
                 });
                 $('#tbody_notificaciones_general').html(tbody_html);
                 myModalNotificaciones.show();
-            } else {
-                console.log('nopp');
             }
         },
         error: function () {},

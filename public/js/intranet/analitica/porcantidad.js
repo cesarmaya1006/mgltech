@@ -16,7 +16,6 @@ $(document).ready(function() {
             data: form.serialize(),
             success: function(respuesta) {
                 $('#chartContainer').removeClass('d-none');
-                console.log(respuesta);
                 var titulo = '';
                 if (esp_rango=='1') {
                     if ($('#subMotivoCheck').is(':checked')) {
@@ -460,7 +459,6 @@ $(document).ready(function() {
             type: 'GET',
             data: data,
             success: function(respuesta) {
-                //console.log(respuesta);
                 respuesta_ini = '<option value="">---Seleccione---</option>';
                 respuesta_html = '<option value="">---Seleccione---</option>';
                 $.each(respuesta, function(index, item) {
@@ -834,9 +832,6 @@ function cargarcanvas(busqueda_, id_, titulo_, titulo_tabla, annoBusqueda, tipoG
         type: 'GET',
         data: data,
         success: function(respuesta) {
-
-            //console.log(respuesta);
-
             if (tipo_grafico == 'pie') {
                 var html_ = "";
 

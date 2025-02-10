@@ -374,9 +374,6 @@ function cargarcanvas(busqueda_, id_, titulo_, titulo_tabla, annoBusqueda, tipoG
         type: 'GET',
         data: data,
         success: function(respuesta) {
-
-            console.log(respuesta);
-
             if (tipo_grafico == 'pie') {
                 var html_ = "";
 

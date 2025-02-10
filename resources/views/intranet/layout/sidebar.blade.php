@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-image: url('{{ asset('imagenes/sistema/icono_sistema.png') }}');background-repeat: no-repeat;">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-image: url('{{ asset('imagenes/sistema/mgl_logo.png') }}');background-repeat: no-repeat;">
     <!-- Brand Logo -->
     <a href="{{ route('dashboard') }}" class="brand-link bg-light" style="text-decoration: none;background-color: rgba(39, 39, 39, 0.8);">
         <img src="{{ asset('imagenes/sistema/logo_mgl.png') }}" alt="M & M" class="brand-image img-circle elevation-3" style="opacity: .8;max-height: 10px;" >

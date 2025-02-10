@@ -41,7 +41,7 @@ $(document).ready(function () {
             type: "GET",
             data: data,
             success: function (respuesta) {
-                console.log(respuesta);
+
                 var respuesta_html = "";
                 if (respuesta.empleados.length > 0) {
                     respuesta_html += '<option value="">Elija Líder</option>';

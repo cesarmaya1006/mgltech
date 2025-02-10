@@ -12,7 +12,7 @@ $(document).ready(function() {
             type: 'GET',
             data: data,
             success: function(respuesta) {
-                console.log(respuesta);
+
                 respuesta_html = '';
                 if (id != '') {
                     respuesta_html += '<option value="">---Seleccione---</option>';
@@ -42,7 +42,7 @@ $(document).ready(function() {
             type: 'GET',
             data: data,
             success: function(respuesta) {
-                console.log(respuesta);
+
                 respuesta_html = '';
                 if (id != '') {
                     respuesta_html += '<option value="">---Seleccione---</option>';

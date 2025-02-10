@@ -36,9 +36,8 @@ $(document).ready(function () {
             type: "GET",
             data: data,
             success: function (respuesta) {
-                console.log(respuesta);
+
                 respuesta_tabla_html_fin = '';
-                $("#tablaCargos").dataTable().fnDestroy();
                 if (respuesta.areas.length > 0) {
                     var respuesta_html = "";
                     respuesta_html += '<option value="Todos">Todos los cargos</option>';
@@ -49,7 +48,7 @@ $(document).ready(function () {
                         //================================================================================
                     });
                     $("#tbody_cargos").html(respuesta_tabla_html_fin);
-                    asignarDataTable();
+                    asignarDataTableAjax();
                     $("#area_id").html(respuesta_html);
                 }else{
                     respuesta_html += '<option value="">Elija una empresa</option>';
@@ -95,7 +94,96 @@ $(document).ready(function () {
 });
 function vaciarTabla(){
     respuesta_tabla_html = '';
-    $("#tablaCargos").dataTable().fnDestroy();
     $("#tbody_cargos").html(respuesta_tabla_html);
-    asignarDataTable();
+    asignarDataTableAjax();
 };
+
+function llenarTablaCargos(cargos){
+    respuesta_tabla_html = '';
+
+    var cargos_edit_ini = $('#cargos_edit').attr("data_url");
+    cargos_edit_ini = cargos_edit_ini.substring(0, cargos_edit_ini.length - 1);
+    const cargos_edit_fin = cargos_edit_ini;
+
+    var cargos_destroy_ini = $('#cargos_destroy').attr("data_url");
+    cargos_destroy_ini = cargos_destroy_ini.substring(0,cargos_destroy_ini.length - 1);
+    const cargos_destroy_fin = cargos_destroy_ini;
+
+    const permiso_cargos_edit = $('#permiso_cargos_edit').val();
+    const permiso_cargos_destroy = $('#permiso_cargos_destroy').val();
+    //================================================================================
+    $.each(cargos, function(index, cargo) {
+        respuesta_tabla_html += '<tr>';
+        respuesta_tabla_html += '<td class="text-center">' + cargo .id + '</td>';
+        respuesta_tabla_html += '<td class="text-center">' + cargo.area.area + '</td>';
+        respuesta_tabla_html += '<td class="text-center">' + cargo.cargo + '</td>';
+        respuesta_tabla_html +='<td class="d-flex justify-content-evenly align-cargos-center">';
+        if (permiso_cargos_edit==1) {
+            respuesta_tabla_html += '<a href="' + cargos_edit_fin + cargo.id + '" class="btn-accion-tabla tooltipsC"';
+            respuesta_tabla_html += 'title="Editar este registro">';
+            respuesta_tabla_html += '<i class="fas fa-pen-square"></i>';
+            respuesta_tabla_html += '</a>';
+        }
+        if (permiso_cargos_destroy == 1) {
+            respuesta_tabla_html += '<form action="' + cargos_destroy_fin + cargo.id + '" class="d-inline form-eliminar" method="POST">';
+            respuesta_html += '<input type="hidden" name="_token" value="'+$("input[name=_token]").val()+'" autocomplete="off">';
+            respuesta_tabla_html += '<input type="hidden" name="_method" value="delete">';
+            respuesta_tabla_html += '<button type="submit" class="btn-accion-tabla eliminar tooltipsC" title="Eliminar este registro">';
+            respuesta_tabla_html += '<i class="fa fa-fw fa-trash text-danger"></i>';
+            respuesta_tabla_html += '</button>';
+            respuesta_tabla_html += '</form>';
+        }
+        if (permiso_cargos_edit==0 && permiso_cargos_destroy == 0) {
+            respuesta_tabla_html += '<span class="text-danger">---</span>';
+        }
+        respuesta_tabla_html += '</td>';
+        respuesta_tabla_html += '</tr>';
+    });
+    //================================================================================
+    $("#tbody_cargos").html(respuesta_tabla_html);
+    asignarDataTableAjax();
+}
+function llenarTablaCargos_emp(cargos){
+    respuesta_tabla_html = '';
+
+    var cargos_edit_ini = $('#cargos_edit').attr("data_url");
+    cargos_edit_ini = cargos_edit_ini.substring(0, cargos_edit_ini.length - 1);
+    const cargos_edit_fin = cargos_edit_ini;
+
+    var cargos_destroy_ini = $('#cargos_destroy').attr("data_url");
+    cargos_destroy_ini = cargos_destroy_ini.substring(0,cargos_destroy_ini.length - 1);
+    const cargos_destroy_fin = cargos_destroy_ini;
+
+    const permiso_cargos_edit = $('#permiso_cargos_edit').val();
+    const permiso_cargos_destroy = $('#permiso_cargos_destroy').val();
+    //================================================================================
+    $.each(cargos, function(index, cargo) {
+        respuesta_tabla_html += '<tr>';
+        respuesta_tabla_html += '<td class="text-center">' + cargo .id + '</td>';
+        respuesta_tabla_html += '<td class="text-center">' + cargo.area.area + '</td>';
+        respuesta_tabla_html += '<td class="text-center">' + cargo.cargo + '</td>';
+        respuesta_tabla_html +='<td class="d-flex justify-content-evenly align-cargos-center">';
+        if (permiso_cargos_edit==1) {
+            respuesta_tabla_html += '<a href="' + cargos_edit_fin + cargo.id + '" class="btn-accion-tabla tooltipsC"';
+            respuesta_tabla_html += 'title="Editar este registro">';
+            respuesta_tabla_html += '<i class="fas fa-pen-square"></i>';
+            respuesta_tabla_html += '</a>';
+        }
+        if (permiso_cargos_destroy == 1) {
+            respuesta_tabla_html += '<form action="' + cargos_destroy_fin + cargo.id + '" class="d-inline form-eliminar" method="POST">';
+            respuesta_tabla_html += '<input type="hidden" name="_token" value="'+$("input[name=_token]").val()+'" autocomplete="off">';
+            respuesta_tabla_html += '<input type="hidden" name="_method" value="delete">';
+            respuesta_tabla_html += '<button type="submit" class="btn-accion-tabla eliminar tooltipsC" title="Eliminar este registro">';
+            respuesta_tabla_html += '<i class="fa fa-fw fa-trash text-danger"></i>';
+            respuesta_tabla_html += '</button>';
+            respuesta_tabla_html += '</form>';
+        }
+        if (permiso_cargos_edit==0 && permiso_cargos_destroy == 0) {
+            respuesta_tabla_html += '<span class="text-danger">---</span>';
+        }
+        respuesta_tabla_html += '</td>';
+        respuesta_tabla_html += '</tr>';
+    });
+    //================================================================================
+    return respuesta_tabla_html;
+}

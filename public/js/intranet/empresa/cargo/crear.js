@@ -67,7 +67,6 @@ $(document).ready(function () {
     //--------------------------------------------------------------------------
     $("#area_id").on("change", function () {
         const id = $(this).val();
-        console.log(id);
         var vacio = '';
         $("#cargo").html(vacio);
         if (id!=0) {

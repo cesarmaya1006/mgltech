@@ -186,7 +186,7 @@ window.addEventListener('DOMContentLoaded', function () {
     // Fin Función para generar varias tutelas.
     // ---------------------------------------------------------------------------------------------------------
 
-    // Inicio guardar auto admisorio  
+    // Inicio guardar auto admisorio
     if(document.querySelector('.btn-complemento-tutela')){
         let btnGuardarComplemento = document.querySelector('.btn-complemento-tutela')
         btnGuardarComplemento.addEventListener('click', function(e){
@@ -257,13 +257,13 @@ window.addEventListener('DOMContentLoaded', function () {
                         headers: { 'X-CSRF-TOKEN': token },
                         data: data,
                         success: function(respuesta) {
-                            // console.log(respuesta)
+
                         },
                         error: function(error) {
                             console.log(error.responseJSON)
                         }
                     });
-                    
+
                 }else {
                     hechos.forEach((item, key) => {
                         let hecho = item.querySelector('.hecho').value
@@ -278,7 +278,7 @@ window.addEventListener('DOMContentLoaded', function () {
                             headers: { 'X-CSRF-TOKEN': token },
                             data: data,
                             success: function(respuesta) {
-                                // console.log(respuesta)
+
                             },
                             error: function(error) {
                                 console.log(error.responseJSON)
@@ -299,7 +299,7 @@ window.addEventListener('DOMContentLoaded', function () {
                         headers: { 'X-CSRF-TOKEN': token },
                         data: data,
                         success: function(respuesta) {
-                            // console.log(respuesta)
+
                         },
                         error: function(error) {
                             console.log(error.responseJSON)
@@ -319,7 +319,7 @@ window.addEventListener('DOMContentLoaded', function () {
                             headers: { 'X-CSRF-TOKEN': token },
                             data: data,
                             success: function(respuesta) {
-                                // console.log(respuesta)
+
                             },
                             error: function(error) {
                                 console.log(error.responseJSON)
@@ -327,7 +327,7 @@ window.addEventListener('DOMContentLoaded', function () {
                         });
                     })
                 }
-        
+
                 let argumentos = contenedorPadre.querySelectorAll('.contenido_argumento')
                 argumentos.forEach(item => {
                     let argumento = item.querySelector('.argumento').value
@@ -342,7 +342,7 @@ window.addEventListener('DOMContentLoaded', function () {
                             headers: { 'X-CSRF-TOKEN': token },
                             data: data,
                             success: function(respuesta) {
-                                // console.log(respuesta)
+
                             },
                             error: function(error) {
                                 console.log(error.responseJSON)
@@ -369,10 +369,10 @@ window.addEventListener('DOMContentLoaded', function () {
                             type: 'POST',
                             headers: { 'X-CSRF-TOKEN': token },
                             data: dataAnexo,
-                            processData: false, 
+                            processData: false,
                             contentType: false,
                             success: function(respuesta) {
-                                // console.log(respuesta)
+
                             },
                             error: function(error) {
                                 console.log(error)
@@ -381,7 +381,7 @@ window.addEventListener('DOMContentLoaded', function () {
                     }
                 })
 
-                
+
                 motivos.forEach(motivo => {
                     let motivo_tutela = motivo.querySelector('.motivo_tutela').value
                     let sub_motivo_tutela = motivo.querySelector('.motivo_sub_tutela').value
@@ -399,7 +399,7 @@ window.addEventListener('DOMContentLoaded', function () {
                             headers: { 'X-CSRF-TOKEN': token },
                             data: data,
                             success: function(respuesta) {
-                                // console.log(respuesta)
+
                             },
                             error: function(error) {
                                 console.log(error.responseJSON)
@@ -419,7 +419,7 @@ window.addEventListener('DOMContentLoaded', function () {
                     headers: { 'X-CSRF-TOKEN': token },
                     data: data,
                     success: function(respuesta) {
-                        // console.log(respuesta)
+
                     },
                     error: function(error) {
                         console.log(error.responseJSON)
@@ -431,7 +431,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
         })
     }
-    //Fin guardar auto admisorio complemento 
+    //Fin guardar auto admisorio complemento
     // ---------------------------------------------------------------------------------------------------------
     // Inicio Funcion de cantidad hechos
     if(document.querySelector('.check-input-hechos')){
@@ -492,5 +492,5 @@ window.addEventListener('DOMContentLoaded', function () {
 
     }
     // Fin Funcion de cantidad hechos
-    
+
 })

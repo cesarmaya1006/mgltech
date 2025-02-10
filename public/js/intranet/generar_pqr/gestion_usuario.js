@@ -144,7 +144,7 @@ window.addEventListener('DOMContentLoaded', function() {
                             processData: false,
                             contentType: false,
                             success: function(respuesta) {
-                                // console.log(respuesta)
+
                             },
                             error: function(error) {
                                 console.log(error)
@@ -203,7 +203,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 headers: { 'X-CSRF-TOKEN': token },
                 data: dataActualizar,
                 success: function(respuesta) {
-                    // console.log(respuesta)
+
                 },
                 error: function(error) {
                     console.log(error)
@@ -231,7 +231,7 @@ window.addEventListener('DOMContentLoaded', function() {
                                 headers: { 'X-CSRF-TOKEN': token },
                                 data: data,
                                 success: function(respuesta) {
-                                    // console.log(respuesta)
+
                                     guardarRespuestaAnexo(anexos, respuesta)
                                 },
                                 error: function(error) {
@@ -252,7 +252,7 @@ window.addEventListener('DOMContentLoaded', function() {
                                 headers: { 'X-CSRF-TOKEN': token },
                                 data: data2,
                                 success: function(respuesta) {
-                                    // console.log(respuesta)
+
                                     guardarRespuestaAnexo(anexos, respuesta)
                                 },
                                 error: function(error) {
@@ -273,7 +273,7 @@ window.addEventListener('DOMContentLoaded', function() {
                                 headers: { 'X-CSRF-TOKEN': token },
                                 data: data,
                                 success: function(respuesta) {
-                                    // console.log(respuesta)
+
                                     guardarRespuestaAnexo(anexos, respuesta)
                                 },
                                 error: function(error) {
@@ -308,7 +308,7 @@ window.addEventListener('DOMContentLoaded', function() {
                             processData: false,
                             contentType: false,
                             success: function(respuesta) {
-                                // console.log(respuesta)
+
                             },
                             error: function(error) {
                                 console.log(error)

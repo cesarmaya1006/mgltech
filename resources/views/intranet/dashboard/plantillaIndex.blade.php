@@ -49,9 +49,7 @@
                                 <td class="text-nowrap">{{ $empresa->telefono }}</td>
                                 <td class="text-nowrap">{{ $empresa->contacto }}</td>
                                 <td class="text-nowrap">{{ $empresa->cargo }}</td>
-                                <td><span
-                                        class="btn-info btn-xs pl-3 pr-3 d-flex flex-row align-items-center bg-{{ $empresa->estado == 1 ? 'success' : 'gray' }} rounded">{{ $empresa->estado == 1 ? 'Activo' : 'Inactivo' }}</span>
-                                </td>
+                                <td><span class="btn-info btn-xs pl-3 pr-3 d-flex flex-row align-items-center bg-{{ $empresa->estado == 1 ? 'success' : 'gray' }} rounded">{{ $empresa->estado == 1 ? 'Activo' : 'Inactivo' }}</span></td>
                                 <td class="d-flex justify-content-evenly">
                                     @can('empresa.edit')
                                         <a href="{{ route('empresa.edit', ['id' => $empresa->id]) }}" class="btn-accion-tabla tooltipsC text-info" title="Editar">

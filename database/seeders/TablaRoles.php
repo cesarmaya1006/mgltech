@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Empresa\OpcionArchivo;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -34,10 +35,7 @@ class TablaRoles extends Seeder
         // ===================================================================================
         Permission::create(['name' => 'permisos_rol.excepciones'])->syncRoles([$rol1,$rol2]);
         // ===================================================================================
-
-
-
-         // ===================================================================================
+        // ===================================================================================
         Permission::create(['name' => 'empresa.index'])->syncRoles([$rol1,$rol2,$rol3,$rol4]);
         Permission::create(['name' => 'empresa.create'])->syncRoles([$rol1,$rol2,$rol3]);
         Permission::create(['name' => 'empresa.edit'])->syncRoles([$rol1,$rol2,$rol3]);
@@ -115,6 +113,8 @@ class TablaRoles extends Seeder
         Permission::create(['name' => 'historiales.edit'])->syncRoles([$rol1]);
         Permission::create(['name' => 'historiales.destroy'])->syncRoles([$rol1]);
         Permission::create(['name' => 'historiales.gestion'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'historiales.store_tarea'])->syncRoles([$rol1,$rol4]);
+
         //---------------------------------------------------------------------------------------------
         // Permisos Subtareas
         Permission::create(['name' => 'subtareas.create'])->syncRoles([$rol1]);
@@ -123,6 +123,15 @@ class TablaRoles extends Seeder
         // Permisos Premisos Empleados
         Permission::create(['name' => 'permisoscargos.index'])->syncRoles([$rol1, $rol3]);
         //---------------------------------------------------------------------------------------------
+        // Permisos Premisos Empleados
+        Permission::create(['name' => 'archivo-modulo.index'])->syncRoles([$rol1, $rol3]);
+        Permission::create(['name' => 'ver_todas_hojas_de_vida'])->syncRoles([$rol1, $rol3]);
+        Permission::create(['name' => 'hojas_vida.hojas_de_vida-editar'])->syncRoles([$rol1, $rol3]);
+        Permission::create(['name' => 'hojas_vida.hojas_de_vida-detalles'])->syncRoles([$rol1, $rol3]);
+
+
+        //---------------------------------------------------------------------------------------------
+
         // ===================================================================================
 
 

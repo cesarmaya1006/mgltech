@@ -118,7 +118,7 @@ window.addEventListener('DOMContentLoaded', function () {
             option
         }
         fetch(url, {
-            headers: { 
+            headers: {
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': token
              },
@@ -155,7 +155,7 @@ window.addEventListener('DOMContentLoaded', function () {
             bloque.classList.remove('d-none')
         }else {
             bloque.classList.add('d-none')
-        } 
+        }
     }
 
     // Fin Función para generar varios accions.
@@ -199,7 +199,7 @@ window.addEventListener('DOMContentLoaded', function () {
     }
     // Fin Función para generar varios anexos tutelas.
     // --------------------------------------------------------------------------------------------------------------------
-    // Inicio guardar auto admisorio  
+    // Inicio guardar auto admisorio
     if(document.querySelector('.btn-auto-admisorio')){
         let btnGuardarAuto = document.querySelector('.btn-auto-admisorio')
         btnGuardarAuto.addEventListener('click', function(e){
@@ -270,7 +270,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 terminosTiempo = document.querySelector('.cantidad_horas').value
                 cantidad_dias = null
             }
-            
+
             let accionantes = document.querySelectorAll('.bloque_accions .contenido_accion')
             let validacionAccionantes = false
             accionantes.forEach(accionante => {
@@ -287,7 +287,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 }
             })
             if(radicado == '' || jurisdiccion == '' || juzgado == '' || departamento == '' || municipio == '' || fecha_notificacion == '' || fecha_notificacion_horas == '' || nombreApellido_juez == '' || direccion_juez == '' || telefono_fijo_juez == '' || correo_juez == '' || selectorTerminos == '' || terminosTiempo == '' || validacionAccionantes ||  titulo_anexo_tutela == '' || !archivo_anexo_tutela){
-                alert('Debe diligenciar todos los campos requeridos') 
+                alert('Debe diligenciar todos los campos requeridos')
             }else{
                 $.ajax({
                     url: url,
@@ -315,10 +315,10 @@ window.addEventListener('DOMContentLoaded', function () {
                         type: 'POST',
                         headers: { 'X-CSRF-TOKEN': token },
                         data: datos,
-                        processData: false, 
+                        processData: false,
                         contentType: false,
                         success: function(respuesta) {
-                            // console.log(respuesta)
+
                         },
                         error: function(error) {
                             console.log(error)
@@ -339,7 +339,7 @@ window.addEventListener('DOMContentLoaded', function () {
                             let correo_accion = accion.querySelector('.correo_accion').value
                             let direccion_accion = accion.querySelector('.direccion_accion').value
                             let telefono_accion = accion.querySelector('.telefono_accion').value
-            
+
                             let nombre_apoderado = accion.querySelector('.nombreApellido_apoderado').value
                             let docutipos_id_apoderado = accion.querySelector('.docutipos_id_apoderado').value
                             let numero_documento_apoderado = accion.querySelector('.identificacion_apoderado').value
@@ -347,7 +347,7 @@ window.addEventListener('DOMContentLoaded', function () {
                             let correo_apoderado = accion.querySelector('.correo_apoderado').value
                             let direccion_apoderado = accion.querySelector('.direccion_apoderado').value
                             let telefono_apoderado = accion.querySelector('.telefono_apoderado').value
-            
+
                             let data = {
                                 tipo_accion,
                                 tipo_persona_accion,
@@ -366,7 +366,7 @@ window.addEventListener('DOMContentLoaded', function () {
                                 direccion_apoderado,
                                 telefono_apoderado,
                                 id
-            
+
                             }
                             $.ajax({
                                 url: url2,
@@ -374,7 +374,7 @@ window.addEventListener('DOMContentLoaded', function () {
                                 headers: { 'X-CSRF-TOKEN': token },
                                 data: data,
                                 success: function(respuesta) {
-                                    // console.log(respuesta)
+
                                 },
                                 error: function(error) {
                                     console.log(error.responseJSON)
@@ -403,10 +403,10 @@ window.addEventListener('DOMContentLoaded', function () {
                                 type: 'POST',
                                 headers: { 'X-CSRF-TOKEN': token },
                                 data: dataAnexo,
-                                processData: false, 
+                                processData: false,
                                 contentType: false,
                                 success: function(respuesta) {
-                                    // console.log(respuesta)
+
                                 },
                                 error: function(error) {
                                     console.log(error)
@@ -418,7 +418,7 @@ window.addEventListener('DOMContentLoaded', function () {
             }
         })
     }
-    //Fin guardar auto admisorio  
+    //Fin guardar auto admisorio
     // --------------------------------------------------------------------------------------------------------------------
     // Funcion para ocultar bloque medida cautelar
     $('.medidaCautelar_check').on('change', function(e) {
@@ -509,7 +509,7 @@ window.addEventListener('DOMContentLoaded', function () {
             if(!horas.classList.contains('d-none')){
                 horas.classList.add('d-none')
             }
-            
+
         }else if(selector.target.value == 2){
             if(!dias.classList.contains('d-none')){
                 dias.classList.add('d-none')
@@ -538,7 +538,7 @@ window.addEventListener('DOMContentLoaded', function () {
             if(!horas.classList.contains('d-none')){
                 horas.classList.add('d-none')
             }
-            
+
         }else if(selector.target.value == 2){
             if(!dias.classList.contains('d-none')){
                 dias.classList.add('d-none')

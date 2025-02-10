@@ -115,7 +115,7 @@ window.addEventListener('DOMContentLoaded', function() {
                     headers: { 'X-CSRF-TOKEN': token },
                     data: data,
                     success: function(respuesta) {
-                        // console.log(respuesta)
+
                         resprecursos_id = respuesta.data.id
                     },
                     error: function(error) {
@@ -146,7 +146,7 @@ window.addEventListener('DOMContentLoaded', function() {
                                 processData: false,
                                 contentType: false,
                                 success: function(respuesta) {
-                                    // console.log(respuesta)
+
                                 },
                                 error: function(error) {
                                     console.log(error)
@@ -194,7 +194,7 @@ window.addEventListener('DOMContentLoaded', function() {
                     headers: { 'X-CSRF-TOKEN': token },
                     data: data,
                     success: function(respuesta) {
-                        // console.log(respuesta)
+
                         resprecursos_id = respuesta.data.id
                     },
                     error: function(error) {
@@ -224,7 +224,7 @@ window.addEventListener('DOMContentLoaded', function() {
                             processData: false,
                             contentType: false,
                             success: function(respuesta) {
-                                // console.log(respuesta)
+
                             },
                             error: function(error) {
                                 console.log(error)
@@ -425,7 +425,7 @@ window.addEventListener('DOMContentLoaded', function() {
                             headers: { 'X-CSRF-TOKEN': token },
                             data: data,
                             success: function(respuesta) {
-                                // console.log(respuesta)
+
                             },
                             error: function(error) {
                                 console.log(error.responseJSON)
@@ -457,7 +457,7 @@ window.addEventListener('DOMContentLoaded', function() {
                             processData: false,
                             contentType: false,
                             success: function(respuesta) {
-                                // console.log(respuesta)
+
                             },
                             error: function(error) {
                                 console.log(error)
@@ -718,7 +718,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 type: 'GET',
                 data: data,
                 success: function(respuesta) {
-                    console.log(respuesta);
+
                     $html_ = '';
                     $.each(respuesta.argumentos, function(index, argumento) {
                         $html_ += '<div class="col -12 col-md-10">';
@@ -1457,7 +1457,7 @@ window.addEventListener('load', function() {
         url: url_t,
         type: 'GET',
         success: function(respuesta) {
-            console.log(respuesta);
+
             $html_ = '';
             if (respuesta.argumentos.length>0) {
                 $.each(respuesta.argumentos, function(index, argumento) {

@@ -24,7 +24,7 @@ window.addEventListener('DOMContentLoaded', function(){
                     headers: { 'X-CSRF-TOKEN': token },
                     data: data,
                     success: function(respuesta) {
-                        // console.log(respuesta)
+
                     },
                     error: function(error) {
                         console.log(error.responseJSON)
