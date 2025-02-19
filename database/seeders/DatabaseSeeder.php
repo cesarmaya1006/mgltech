@@ -28,6 +28,10 @@ class DatabaseSeeder extends Seeder
             TablaComponentes::class,
             TablaTareas::class,
             TablaOpcionArchivo::class,
+            TablaTipoEducacion::class,
+            TablaPais::class,
+            TablaDepartamentos::class,
+            TablaMunicipios::class,
 
         ]);
     }

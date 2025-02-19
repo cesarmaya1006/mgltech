@@ -1,6 +1,6 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.2.1/js/dataTables.bootstrap5.js"></script>
 <script src="https://cdn.datatables.net/buttons/3.2.0/js/dataTables.buttons.js"></script>
 <script src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.bootstrap5.js"></script>
@@ -11,19 +11,18 @@
 <script src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.print.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.colVis.min.js"></script>
 <script>
-    function asignarDataTableAjax(table_id,titulo_tabla) {
+    function asignarDataTableAjax(table_id, titulo_tabla) {
         $(table_id).DataTable({
-            bSort: false,
+            scrollX: true,
             lengthMenu: [10, 15, 25, 50, 75, 100],
-            pageLength: 15,
+            pageLength: 5,
             dom: "lBfrtip",
             buttons: [
                 "excel",
                 {
                     extend: "pdfHtml5",
-                    orientation: "landscape",
                     pageSize: "Legal",
-                    title: titulo_tabla,
+                    title: $("#titulo_tabla").val(),
                 },
             ],
             language: {
@@ -46,7 +45,7 @@
         });
     }
 
-    function vaciarTabla(table_id,tbody) {
+    function vaciarTabla(table_id, tbody) {
         respuesta_tabla_html = '';
         $(table_id).DataTable().destroy();
         $(tbody).html(respuesta_tabla_html);

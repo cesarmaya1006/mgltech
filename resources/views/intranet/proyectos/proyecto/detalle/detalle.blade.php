@@ -206,7 +206,7 @@
                                                                 <div class="user-block">
                                                                     <img class="img-circle img-bordered-sm"
                                                                         title="{{ $historial->empleado->nombres . ' ' . $historial->empleado->apellidos }}"
-                                                                        src="{{ asset('imagenes/hojas_de_vida/' . $historial->empleado->foto) }}"
+                                                                        src="{{ asset('imagenes/usuarios/' . $historial->empleado->foto) }}"
                                                                         alt="{{ $historial->empleado->nombres . ' ' . $historial->empleado->apellidos }}">
                                                                     <span
                                                                         class="username">{{ $historial->empleado->nombres . ' ' . $historial->empleado->apellidos }}</span>

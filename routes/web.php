@@ -294,9 +294,17 @@ Route::prefix('dashboard')->middleware(['auth:sanctum',config('jetstream.auth_se
             Route::get('', 'index')->name('archivo-modulo.index');
             Route::controller(HojasDeVidaController::class)->prefix('hojas_vida')->group(function () {
                 Route::get('', 'index')->name('hojas_vida.index');
-                Route::get('archivo-hojas_de_vida/{id}/editar', 'editar')->name('hojas_vida.hojas_de_vida-editar');
-                Route::get('archivo-hojas_de_vida/{id}/detalles', 'detalles')->name('hojas_vida.hojas_de_vida-detalles');
+                Route::get('archivo-hojas_de_vida/editar/{id}', 'edit')->name('hojas_vida.hojas_de_vida-editar');
+                Route::get('archivo-hojas_de_vida/detalles/{id}', 'show')->name('hojas_vida.hojas_de_vida-detalles');
                 Route::get('getUsuariosHojasVida','getUsuariosHojasVida')->name('getUsuariosHojasVida');
+                Route::get('getUsuariosHojasVidaFormateado/{id}','getUsuariosHojasVidaFormateado')->name('getUsuariosHojasVidaFormateado');
+                Route::get('getFiltrarUsuarioNombre','getFiltrarUsuarioNombre')->name('getFiltrarUsuarioNombre');
+                Route::put('setCargoEmpleado','setCargoEmpleado')->name('hojas_vida.setCargoEmpleado');
+                Route::put('setEmpleadodatos','setEmpleadodatos')->name('hojas_vida.setEmpleadodatos');
+                Route::put('setEducacionEmpleadodatos','setEducacionEmpleadodatos')->name('hojas_vida.setEducacionEmpleadodatos');
+                Route::delete('eliminarlaboralformal/{id}', 'eliminarlaboralformal')->name('hojas_vida.eliminarlaboralformal');
+                Route::post('addExperienciaLaboral', 'addExperienciaLaboral')->name('hojas_vida.addExperienciaLaboral');
+                Route::get('getCargarMunicipios','getCargarMunicipios')->name('hojas_vida.getCargarMunicipios');
 
             });
             Route::controller(ManualesController::class)->prefix('manuales')->group(function () {

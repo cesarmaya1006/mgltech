@@ -128,6 +128,9 @@ class TablaRoles extends Seeder
         Permission::create(['name' => 'ver_todas_hojas_de_vida'])->syncRoles([$rol1, $rol3]);
         Permission::create(['name' => 'hojas_vida.hojas_de_vida-editar'])->syncRoles([$rol1, $rol3]);
         Permission::create(['name' => 'hojas_vida.hojas_de_vida-detalles'])->syncRoles([$rol1, $rol3]);
+        Permission::create(['name' => 'hojas_vida.edicionCargos'])->syncRoles([$rol1, $rol3]);
+        Permission::create(['name' => 'hojas_vida.edicionHV'])->syncRoles([$rol1, $rol3]);
+
 
 
         //---------------------------------------------------------------------------------------------

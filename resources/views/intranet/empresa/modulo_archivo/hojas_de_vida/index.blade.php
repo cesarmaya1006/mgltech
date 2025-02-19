@@ -7,15 +7,16 @@
 @endsection
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-    <li class="breadcrumb-item"><a href="#">Módulo Archivo</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('archivo-modulo.index') }}">Módulo Archivo</a></li>
+    <li class="breadcrumb-item"><a href="#">Hojas de Vida</a></li>
+
+
 @endsection
 @section('titulo_card')
     Hojas de Vida
 @endsection
 @section('botones_card')
-    @can('empresa.create')
 
-    @endcan
 @endsection
 @section('cuerpoPagina')
     @can('hojas_vida.index')
@@ -58,10 +59,26 @@
             </div>
         </div>
         <hr>
-        <div class="row d-flex justify-content-md-center">
+        <div class="row d-none" id="cajaBusqueda">
+            <div class="col-12 col-md-3 form-group">
+                <label for="buscartarjetas">Buscar por nombre o apellido</label>
+                <input type="text" class="form-control form-control-sm" id="buscartarjetas" data_url="{{route('getFiltrarUsuarioNombre')}}">
+            </div>
+        </div>
+        <br>
+        <div class="row d-none" id="newCajaHV">
+
+        </div>
+<!--
+        <div class="row d-flex justify-content-md-center d-none">
             <div class="col-12 table-responsive">
-                <table class="table table-striped table-hover table-sm tabla_data_table_m tabla-borrando" id="tabla-data">
-                    <tbody>
+                <table class="table table-striped table-hover table-sm tabla_data_table" id="tabla_empleados">
+                    <thead>
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody  id="tbody_hojas_de_vida">
                         @if ($usuario->empleado && $usuario->empleado->empresas_tranv->count()==0)
                             @can('ver_todas_hojas_de_vida')
                                 @foreach ($empleado->cargo->area->empresa->areas as $area)
@@ -78,7 +95,7 @@
                                                         </div>
                                                         <div class="widget-user-image">
                                                             <img class="img-circle elevation-4"
-                                                                src="{{ asset('imagenes/hojas_de_vida/' . $empleado->foto) }}"
+                                                                src="{{ asset('imagenes/usuarios/' . $empleado->foto) }}"
                                                                 alt="{{ $empleado->usuario->nombres . ' ' . $empleado->usuario->apellidos }}">
                                                         </div>
                                                         <div class="card-footer">
@@ -114,13 +131,12 @@
                                                                 <div class="col-sm-3">
                                                                     <div class="description-block">
                                                                         <h5 class="description-header">Opciones</h5>
-                                                                        <span
-                                                                            class="description-text d-flex justify-content-md-between mt-2">
-                                                                            <a href="{{ route('hojas_de_vida-editar', ['id' => $empleado->id]) }}"
+                                                                        <span class="description-text d-flex justify-content-md-between mt-2">
+                                                                            <a href="{{ route('hojas_vida.hojas_de_vida-editar', ['id' => $empleado->id]) }}"
                                                                                 class="btn btn-primary pl-1 pr-1 btn-xs btn-sombra"><i
                                                                                     class="fa fa-edit mr-1" aria-hidden="true"></i>
                                                                                 Editar</a>
-                                                                            <a href="{{ route('hojas_de_vida-detalles', ['id' => $empleado->id]) }}"
+                                                                            <a href="{{ route('hojas_vida.hojas_de_vida-detalles', ['id' => $empleado->id]) }}"
                                                                                 class="btn btn-info pl-1 pr-1 btn-xs btn-sombra"><i
                                                                                     class="fa fa-eye mr-1" aria-hidden="true"></i>
                                                                                 Detalles</a>
@@ -147,7 +163,7 @@
                                             </div>
                                             <div class="widget-user-image">
                                                 <img class="img-circle elevation-4"
-                                                    src="{{ asset('imagenes/hojas_de_vida/' . $usuario->empleado->foto) }}"
+                                                    src="{{ asset('imagenes/usuarios/' . $usuario->empleado->foto) }}"
                                                     alt="{{ $usuario->empleado->usuario->nombres . ' ' . $usuario->empleado->usuario->apellidos }}">
                                             </div>
                                             <div class="card-footer">
@@ -185,12 +201,12 @@
                                                             <h5 class="description-header">Opciones</h5>
                                                             <span
                                                                 class="description-text d-flex justify-content-md-between mt-2">
-                                                                <a href="{{ route('hojas_de_vida-editar', ['id' => $usuario->empleado->id]) }}"
+                                                                <a href="{{ route('hojas_vida.hojas_de_vida-editar', ['id' => $usuario->empleado->id]) }}"
                                                                     class="btn btn-primary pl-1 pr-1 btn-xs btn-sombra"><i
                                                                         class="fa fa-edit mr-1"
                                                                         aria-hidden="true"></i>
                                                                     Editar</a>
-                                                                <a href="{{ route('hojas_de_vida-detalles', ['id' => $usuario->empleado->id]) }}"
+                                                                <a href="{{ route('hojas_vida.hojas_de_vida-detalles', ['id' => $usuario->empleado->id]) }}"
                                                                     class="btn btn-info pl-1 pr-1 btn-xs btn-sombra"><i
                                                                         class="fa fa-eye mr-1"
                                                                         aria-hidden="true"></i>
@@ -205,17 +221,18 @@
                                 </tr>
                             @endcan
                         @else
-                            <tbody id="tbody_hojas_de_vida">
-
-                            </tbody>
+                            <tr>
+                                <td></td>
+                            </tr>
                         @endif
                     </tbody>
                 </table>
-                <input type="hidden" id="folderFotos" value="{{asset('imagenes/hojas_de_vida/')}}">
-                <input type="hidden" id="hojas_de_vida_editar" data_url="{{route('hojas_vida.hojas_de_vida-editar',['id'=>1])}}">
-                <input type="hidden" id="hojas_de_vida_detalles" data_url="{{route('hojas_vida.hojas_de_vida-detalles',['id'=>1])}}">
             </div>
         </div>
+    -->
+        <input type="hidden" id="folderFotos" value="{{asset('imagenes/usuarios/')}}">
+        <input type="hidden" id="hojas_de_vida_editar" data_url="{{route('hojas_vida.hojas_de_vida-editar',['id'=>1])}}">
+        <input type="hidden" id="hojas_de_vida_detalles" data_url="{{route('hojas_vida.hojas_de_vida-detalles',['id'=>1])}}">
     @else
         <div class="row d-flex justify-content-center">
             <div class="col-12 col-md-6">
