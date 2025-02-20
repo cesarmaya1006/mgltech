@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('telefono', 255);
             $table->date('fecha_inicio');
             $table->date('fecha_termino')->nullable();
+            $table->string('tipo_contrato', 255);
             $table->string('observaciones', 255);
             $table->string('soporte', 255)->nullable();
             $table->timestamps();
@@ -33,6 +34,7 @@ return new class extends Migration
             $table->collation = 'utf8_spanish_ci';
         });
     }
+
 
     /**
      * Reverse the migrations.

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Empresa;
 
 use App\Http\Controllers\Controller;
+use App\Models\Empresa\GrupoEmpresa;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SoportesAfiliacionController extends Controller
@@ -12,7 +14,24 @@ class SoportesAfiliacionController extends Controller
      */
     public function index()
     {
-        //
+        $usuario = User::findOrFail(session('id_usuario'));
+        if (session('rol_principal_id') < 3) {
+            $grupos = GrupoEmpresa::get();
+        } else {
+            if ($usuario->empleado->empresas_tranv->count() > 0) {
+                $idEmpresas = [];
+                foreach ($usuario->empleado->empresas_tranv as $empresas) {
+                    array_push($idEmpresas, $empresas->id);
+                }
+                $grupos = GrupoEmpresa::whereHas('empresas', function ($q) use ($idEmpresas) {
+                    $q->whereIn('id', $idEmpresas);
+                })->get();
+            } else {
+                $grupos = GrupoEmpresa::where('id', $usuario->empleado->cargo->area->empresa->grupo->id)->get();
+            }
+        }
+
+        return view('intranet.empresa.modulo_archivo.soportes_afiliacion.index', compact('grupos', 'usuario'));
     }
 
     /**

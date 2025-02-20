@@ -13,5 +13,9 @@ return [
     "folder_doc_proyectos" => public_path() . '/documentos/proyectos/ ',
     //--------------------------------------------------------------------------------
     "folder_doc_empleados" => public_path() . '/documentos/empleados/ ',
+    //--------------------------------------------------------------------------------
+    "folder_manuales" => public_path() . '/documentos/manuales/ ',
+    //--------------------------------------------------------------------------------
+    "folder_soportes" => public_path() . '/documentos/soportes/ ',
 
 ];

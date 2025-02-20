@@ -282,10 +282,6 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Experiencia laboral</h3>
-                        <button type="button" class="btn btn-green-moon btn-xs btn-mini_sombra text-center pl-5 pr-5 float-md-end" data-bs-toggle="modal" data-bs-target="#laboralModal">
-                            <i class="fas fa-cloud-upload-alt mr-3"></i>
-                            Nuevo Registro
-                          </button>
                     </div>
                     <div class="card-body">
                         <div id="accordionLaboral">
@@ -298,6 +294,12 @@
                                 <div id="collapseLaboralFormal" class="collapse" data-parent="#accordionLaboral" style="">
                                     <div class="card-body">
                                         <div class="row">
+                                            <div class="col-12 mb-3">
+                                                <button type="button" class="btn btn-green-moon btn-xs btn-mini_sombra text-center pl-5 pr-5" data-bs-toggle="modal" data-bs-target="#laboralModal">
+                                                    <i class="fas fa-cloud-upload-alt mr-3"></i>
+                                                    Nuevo Registro
+                                                </button>
+                                            </div>
                                             @csrf @method('delete')
                                             <div class="col-12 table-responsive">
                                                 <table class="table tabla-borrando">
@@ -369,29 +371,62 @@
                                 <div id="collapseTwo" class="collapse" data-parent="#accordion">
                                     <div class="card-body">
                                         <div class="row">
+                                            <div class="col-12 mb-3">
+                                                <button type="button" class="btn btn-green-moon btn-xs btn-mini_sombra text-center pl-5 pr-5" data-bs-toggle="modal" data-bs-target="#informalModal">
+                                                    <i class="fas fa-cloud-upload-alt mr-3"></i>
+                                                    Nuevo Registro
+                                                </button>
+                                            </div>
                                             <div class="col-12 table-responsive">
                                                 <table class="table">
                                                     <thead>
                                                         <tr>
-                                                            <th class="text-center" scope="col">Estado</th>
-                                                            <th class="text-center" scope="col">Título obtenido</th>
-                                                            <th class="text-center" scope="col">Establecimiento educativo</th>
-                                                            <th class="text-center" scope="col">Fecha grado o ult curs</th>
-                                                            <th class="text-center" scope="col">Num tarjeta prof.</th>
+                                                            <th class="text-center" scope="col">Entidad</th>
+                                                            <th class="text-center" scope="col">Tipo de Entidad</th>
+                                                            <th class="text-center" scope="col">Actividad</th>
+                                                            <th class="text-center" scope="col">Producto</th>
+                                                            <th class="text-center" scope="col">Pais</th>
+                                                            <th class="text-center" scope="col">Departamento</th>
+                                                            <th class="text-center" scope="col">Municipio</th>
+                                                            <th class="text-center" scope="col">Dirección</th>
+                                                            <th class="text-center" scope="col">Teléfono</th>
+                                                            <th class="text-center" scope="col">Fecha de Inicio</th>
+                                                            <th class="text-center" scope="col">Fecha de Termino</th>
+                                                            <th class="text-center" scope="col">Tipo de Contrato</th>
+                                                            <th class="text-center" scope="col">Observaciones</th>
                                                             <th class="text-center" scope="col">Soporte</th>
-                                                            <th class="text-center" scope="col">Opciones</th>
+                                                            <th class="text-center" scope="col"></th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody id="tbodyEducacionSuperior">
-                                                        @foreach ($empleado->info_educacion->where('tipo_id',2) as $educacion)
+                                                    <tbody id="tbodyExperienciaInformal">
+                                                        @foreach ($empleado->experienciasIndp->sortByDesc('fecha_termino') as $experienciaInd)
                                                             <tr>
-                                                                <td>{{$educacion->estado}}</td>
-                                                                <td>{{$educacion->titulo}}</td>
-                                                                <td>{{$educacion->establecimiento}}</td>
-                                                                <td>{{$educacion->fecha_termino}}</td>
-                                                                <td>{{$educacion->tarjeta_prof}}</td>
-                                                                <td><a href="{{asset('documentos/empleados/' . $educacion->soporte)}}" target="_blank">{{substr($educacion->soporte, strpos($educacion->soporte, "-") + 1);}}</a></td>
-                                                                <td></td>
+                                                                <td style="white-space:nowrap;">{{ $experienciaInd->entidad }}</td>
+                                                                <td style="white-space:nowrap;">{{ $experienciaInd->tipo_entidad }}</td>
+                                                                <td style="white-space:nowrap;">{{ $experienciaInd->actividad }}</td>
+                                                                <td style="white-space:nowrap;">{{ $experienciaInd->producto }}</td>
+                                                                <td style="white-space:nowrap;">{{ $experienciaInd->pais }}</td>
+                                                                <td style="white-space:nowrap;">{{ $experienciaInd->pais == 'COLOMBIA' ? $experienciaInd->departamento : '---' }}</td>
+                                                                <td style="white-space:nowrap;">{{ $experienciaInd->pais == 'COLOMBIA' ? $experienciaInd->municipio : '---' }}</td>
+                                                                <td style="white-space:nowrap;">{{ $experienciaInd->direccion }}</td>
+                                                                <td style="white-space:nowrap;">{{ $experienciaInd->telefono }}</td>
+                                                                <td style="white-space:nowrap;">{{ $experienciaInd->fecha_inicio }}</td>
+                                                                <td style="white-space:nowrap;">{{ $experienciaInd->fecha_termino }}</td>
+                                                                <td style="white-space:nowrap;">{{ $experienciaInd->tipo_contrato }}</td>
+                                                                <td style="vertical-align: normal;max-width: 300px;min-height: 200px;">{{ $experienciaInd->observaciones }}</td>
+                                                                <td style="white-space:nowrap;">
+                                                                    <a href="{{ asset('documentos/hojas_de_vida/' . $experienciaInd->soporte) }}"target="_blank">{{ $experienciaInd->soporte }}</a>
+                                                                </td>
+                                                                <td class="text-center" style="min-width: 100px;">
+                                                                    <form action="{{ route('hojas_vida.eliminarlaboralinformal', ['id' => $experienciaInd->id]) }}" class="d-inline form-eliminar" method="POST">
+                                                                        @csrf @method("delete")
+                                                                        <button type="submit"
+                                                                            class="btn-accion-tabla eliminar tooltipsC text-danger"
+                                                                            title="Eliminar este registro">
+                                                                            <i class="fas fa-trash-alt"></i>
+                                                                        </button>
+                                                                    </form>
+                                                                </td>
                                                             </tr>
                                                         @endforeach
                                                     </tbody>
@@ -715,8 +750,120 @@
     </div>
 </div>
 <!-- fin Modal -->
+<!-- Modal -->
+<div class="modal fade" id="informalModal" tabindex="-1" aria-labelledby="informalModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <form id="formAddExperienciaInformal" class="modal-content form-horizontal" action="{{ route('hojas_vida.addExperienciaInformal') }}" method="POST" autocomplete="off">
+            @csrf
+            @method('post')
+            <input type="hidden" name="empleado_id" value="{{$empleado->id}}">
+            <div class="modal-header">
+                <h6 class="modal-title" id="informalModalLabel">Añadir Experiencia Laboral Informal </h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12 form-group">
+                        <label class="requerido" for="entidad">Entidad/Empresa</label>
+                        <input type="text" class="form-control form-control-sm" name="entidad" id="entidad" aria-describedby="helpId" placeholder="" required>
+                    </div>
+                    <div class="col-12 form-group">
+                        <label class="requerido" for="tipo_entidad">Tipo de Entidad</label>
+                        <select class="form-control form-control-sm" name="tipo_entidad" id="tipo_entidad" required>
+                            <option value="">Seleccione Opción</option>
+                            <option value="Pública">Pública</option>
+                            <option value="Privada">Privada</option>
+                        </select>
+                    </div>
+                    <div class="col-12 form-group">
+                        <label class="requerido" for="actividad">Actividad</label>
+                        <input type="text" class="form-control form-control-sm" name="actividad" id="actividad" required>
+                    </div>
+                    <div class="col-12 form-group">
+                        <label class="requerido" for="producto">Producto</label>
+                        <input type="text" class="form-control form-control-sm" name="producto" id="producto" required>
+                    </div>
+                    <div class="col-12 form-group">
+                        <label class="requerido" for="pais">País</label>
+                        <select class="form-control form-control-sm" name="pais" id="pais">
+                            <option value="">Elija un País</option>
+                            @foreach ($paises as $pais)
+                                <option value="{{ $pais->pais }}" {{ $pais->pais == 'COLOMBIA' ? 'Selected' : '' }}>{{ $pais->pais }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-12 form-group">
+                        <label class="requerido" for="departamento" id="label_departamento">Departamento</label>
+                        <select class="form-control form-control-sm" name="departamento" data_url="{{ route('hojas_vida.getCargarMunicipios') }}" id="departamentoInformal">
+                            <option value="">Elija un Departamento</option>
+                            @foreach ($departamentos as $departamento)
+                                <option value="{{$departamento->id }}">{{ $departamento->departamento }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-12 form-group">
+                        <label class="requerido" for="municipio" id="label_municipio">Municipio</label>
+                        <select class="form-control form-control-sm" name="municipio" id="municipioInformal">
+                            <option value="">Elija primero un Depto.</option>
+                        </select>
+                    </div>
+                    <div class="col-12 form-group">
+                        <label class="requerido" for="direccion">Dirección</label>
+                        <input type="text" class="form-control form-control-sm" name="direccion" id="direccion" required>
+                    </div>
+                    <div class="col-12 form-group">
+                        <label class="requerido" for="telefono">Teléfono</label>
+                        <input type="text" class="form-control form-control-sm" maxlength="13" name="telefono"
+                               id="telefono" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" required>
+                    </div>
+                    <div class="col-12 form-group">
+                        <label class="requerido" for="fecha_inicio">Fecha Ingreso</label>
+                        <input type="date" class="form-control form-control-sm"
+                               max="{{ date('Y-m-d', strtotime(date('Y-m-d') . '- 1 days')) }}"
+                               value="{{ date('Y-m-d', strtotime(date('Y-m-d') . '- 1 days')) }}"
+                               name="fecha_inicio" id="fecha_inicio" required>
+                    </div>
+                    <div class="col-12 form-group">
+                        <label class="" for="fecha_termino" id="label_fecha_termino">Fecha termino</label>
+                        <input type="date" class="form-control form-control-sm" name="fecha_termino" id="fecha_termino">
+                    </div>
+                    <div class="col-12 form-group">
+                        <label class="requerido" for="tipo_contrato">Tipo de Contrato</label>
+                        <select class="form-control form-control-sm" name="tipo_contrato" id="tipo_contrato"
+                            required>
+                            <option value="">Seleccione Opción</option>
+                            <option value="A Término Indefinido ">A Término Indefinido </option>
+                            <option value="A Término Fijo">A Término Fijo</option>
+                            <option value="De Obra o Labor">De Obra o Labor</option>
+                            <option value="Temporal, Ocasional o Accidental">Temporal, Ocasional o Accidental</option>
+                            <option value="Civil por Prestación de Servicios">Civil por Prestación de Servicios</option>
+                            <option value="De Aprendizaje">De Aprendizaje</option>
+                        </select>
+                    </div>
+                    <div class="col-12 form-group">
+                        <label class="" for="soporte">Soporte Pdf</label>
+                        <input class="form-control form-control-sm" type="file" name="soporte" id="soporte" accept="application/pdf" style="font-size: 0.9em;">
 
-<input type="hidden" id="rutaSoportes" value="{{asset('documentos/empleados/')}}" data_url_borrar_laboral="{{route('hojas_vida.eliminarlaboralformal', ['id' => 1])}}">
+                    </div>
+                    <div class="col-12 form-group">
+                        <label class="" for="observaciones">Observaciones</label>
+                        <textarea class="form-control form-control-sm" name="observaciones" id="observaciones" rows="4" style="resize: none;" required></textarea>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-xs" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary btn-xs">Cuardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- fin Modal -->
+
+<input type="hidden" id="rutaSoportes" value="{{asset('documentos/empleados/')}}"
+       data_url_borrar_laboral="{{route('hojas_vida.eliminarlaboralformal', ['id' => 1])}}"
+       data_url_borrar_informal="{{route('hojas_vida.eliminarlaboralinformal', ['id' => 1])}}">
 @endsection
 
 @section('script_pagina')

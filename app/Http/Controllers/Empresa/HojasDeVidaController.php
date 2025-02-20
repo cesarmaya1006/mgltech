@@ -11,6 +11,7 @@ use App\Models\Empresa\GrupoEmpresa;
 use App\Models\Empresa\TipoEducacion;
 use App\Models\Empresa\Pais;
 use App\Models\Empresa\Departamento;
+use App\Models\Empresa\ExperienciaIndp;
 use App\Models\Empresa\ExperienciaLab;
 use App\Models\Empresa\Municipio;
 use App\Models\User;
@@ -357,6 +358,42 @@ class HojasDeVidaController extends Controller
             // - - - - - - - - - - - - - - - - - - - - - - - -
             $experienciaLaboral['soporte'] = $nombre_doc;
             $experienciaLaboralNew = ExperienciaLab::create($experienciaLaboral);
+            return response()->json(['mensaje' => 'ok','experienciaLaboral' => $experienciaLaboralNew]);
+        } else {
+            abort(404);
+        }
+    }
+    public function addExperienciaInformal(Request $request)
+    {
+        if ($request->ajax()) {
+            $experienciaLaboral['empleado_id'] = $request['empleado_id'];
+            $experienciaLaboral['tipo_entidad'] = $request['tipo_entidad'];
+            $experienciaLaboral['entidad'] = $request['entidad'];
+            $experienciaLaboral['actividad'] = $request['actividad'];
+            $experienciaLaboral['producto'] = $request['producto'];
+            $experienciaLaboral['pais'] = $request['pais'];
+            $departamento = Departamento::findOrFail(intval($request['departamento']));
+            $experienciaLaboral['departamento'] = $departamento->departamento;
+            $experienciaLaboral['municipio'] = $request['municipio'];
+            $experienciaLaboral['direccion'] = $request['direccion'];
+            $experienciaLaboral['telefono'] = $request['telefono'];
+            $experienciaLaboral['fecha_inicio'] = $request['fecha_inicio'];
+            $experienciaLaboral['fecha_termino'] = $request['fecha_termino'];
+            $experienciaLaboral['tipo_contrato'] = $request['tipo_contrato'];
+            $experienciaLaboral['tiempo_contrato'] = $request['tiempo_contrato'];
+            $experienciaLaboral['observaciones'] = $request['observaciones'];
+            // - - - - - - - - - - - - - - - - - - - - - - - -
+            if ($request->hasFile('soporte')) {
+                $ruta = Config::get('constantes.folder_doc_empleados');
+                $ruta = trim($ruta);
+
+                $doc_subido = $request->soporte;
+                $nombre_doc = time() . '-' . utf8_encode(utf8_decode($doc_subido->getClientOriginalName()));
+                $doc_subido->move($ruta, $nombre_doc);
+            }
+            // - - - - - - - - - - - - - - - - - - - - - - - -
+            $experienciaLaboral['soporte'] = $nombre_doc;
+            $experienciaLaboralNew = ExperienciaIndp::create($experienciaLaboral);
             return response()->json(['mensaje' => 'ok','experienciaLaboral' => $experienciaLaboralNew]);
         } else {
             abort(404);

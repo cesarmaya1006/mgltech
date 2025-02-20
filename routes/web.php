@@ -302,13 +302,19 @@ Route::prefix('dashboard')->middleware(['auth:sanctum',config('jetstream.auth_se
                 Route::put('setCargoEmpleado','setCargoEmpleado')->name('hojas_vida.setCargoEmpleado');
                 Route::put('setEmpleadodatos','setEmpleadodatos')->name('hojas_vida.setEmpleadodatos');
                 Route::put('setEducacionEmpleadodatos','setEducacionEmpleadodatos')->name('hojas_vida.setEducacionEmpleadodatos');
-                Route::delete('eliminarlaboralformal/{id}', 'eliminarlaboralformal')->name('hojas_vida.eliminarlaboralformal');
                 Route::post('addExperienciaLaboral', 'addExperienciaLaboral')->name('hojas_vida.addExperienciaLaboral');
+                Route::delete('eliminarlaboralformal/{id}', 'eliminarlaboralformal')->name('hojas_vida.eliminarlaboralformal');
+                Route::post('addExperienciaInformal', 'addExperienciaInformal')->name('hojas_vida.addExperienciaInformal');
+                Route::delete('eliminarlaboralinformal/{id}', 'eliminarlaboralinformal')->name('hojas_vida.eliminarlaboralinformal');
                 Route::get('getCargarMunicipios','getCargarMunicipios')->name('hojas_vida.getCargarMunicipios');
 
             });
             Route::controller(ManualesController::class)->prefix('manuales')->group(function () {
                 Route::get('', 'index')->name('manuales.index');
+                Route::get('getAreasManuales', 'getAreasManuales')->name('manuales.getAreasManuales');
+                Route::post('addManual', 'addManual')->name('manuales.addManual');
+                Route::delete('eliminarManual/{id}', 'eliminarManual')->name('manuales.eliminarManual');
+
             });
             Route::controller(SoportesAfiliacionController::class)->prefix('soportes_afiliacion')->group(function () {
                 Route::get('', 'index')->name('soportes_afiliacion.index');

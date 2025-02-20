@@ -27,6 +27,31 @@ $(document).ready(function () {
         });
     });
     //--------------------------------------------------------------------------
+    $("#departamentoInformal").on("change", function () {
+        const data_url = $(this).attr("data_url");
+        const id = $(this).val();
+        var data = {
+            id: id,
+        };
+        $.ajax({
+            url: data_url,
+            type: "GET",
+            data: data,
+            success: function (respuesta) {
+                var respuesta_html = "";
+                if (respuesta.municipios.length > 0) {
+                    respuesta_html +=
+                        '<option value="">Elija un Municipio</option>';
+                    $.each(respuesta.municipios, function (index, item) {
+                        respuesta_html += '<option value="' + item.municipio + '">' + item.municipio + "</option>";
+                    });
+                }
+                $("#municipioInformal").html(respuesta_html);
+            },
+            error: function () {},
+        });
+    });
+    //--------------------------------------------------------------------------
     $("#area_id").on("change", function () {
         const data_url = $(this).attr("data_url");
         const id = $(this).val();
@@ -252,6 +277,74 @@ $(document).ready(function () {
                     respuesta_html +='</tr>';
                     $("#laboralModal").modal('hide');
                     $('#tbodyExperienciaFormal').append(respuesta_html);
+                    Sistema.notificaciones(
+                        "Se registro correctamente la experiencia laboral",
+                        "Sistema",
+                        "success"
+                    );
+                } else {
+                    Sistema.notificaciones(
+                        "No se pudo hacer el cambio de cargo, solicite asistencia técnica",
+                        "Sistema",
+                        "error"
+                    );
+                }
+            },
+            error: function () {},
+        });
+
+
+      });
+    //--------------------------------------------------------------------------
+    $('#formAddExperienciaInformal').submit(function(e) {
+        e.preventDefault();
+        const form = $(this);
+        // -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*-
+        var eliminarlaboralinformal_ini = $("#rutaSoportes").attr("data_url_borrar_informal");
+        eliminarlaboralinformal_ini = eliminarlaboralinformal_ini.substring(0,eliminarlaboralinformal_ini.length - 1);
+        const eliminarlaboralinformal_fin = eliminarlaboralinformal_ini;
+        // -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*-
+        var formData = new FormData(this);
+        $.ajax({
+            url: form.attr("action"),
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (respuesta) {
+                console.log(respuesta);
+                var respuesta_html = "";
+                if (respuesta.mensaje == "ok") {
+                    experiencia = respuesta.experienciaLaboral;
+                    respuesta_html +='<tr>';
+                    respuesta_html +='    <td style="white-space:nowrap;">' + experiencia.entidad + '</td>';
+                    respuesta_html +='    <td style="white-space:nowrap;">' + experiencia.tipo_entidad  + '</td>';
+                    respuesta_html +='    <td style="white-space:nowrap;">' + experiencia.actividad  + '</td>';
+                    respuesta_html +='    <td style="white-space:nowrap;">' + experiencia.producto  + '</td>';
+                    respuesta_html +='    <td style="white-space:nowrap;">' + experiencia.pais  + '</td>';
+                    respuesta_html +='    <td style="white-space:nowrap;">' + experiencia.pais == 'COLOMBIA' ? experiencia.departamento : '---'  + '</td>';
+                    respuesta_html +='    <td style="white-space:nowrap;">' + experiencia.pais == 'COLOMBIA' ? experiencia.municipio : '---'  + '</td>';
+                    respuesta_html +='    <td style="white-space:nowrap;">' + experiencia.direccion  + '</td>';
+                    respuesta_html +='    <td style="white-space:nowrap;">' + experiencia.telefono  + '</td>';
+                    respuesta_html +='    <td style="white-space:nowrap;">' + experiencia.fecha_inicio  + '</td>';
+                    respuesta_html +='    <td style="white-space:nowrap;">' + experiencia.fecha_termino  + '</td>';
+                    respuesta_html +='    <td style="white-space:nowrap;">' + experiencia.tipo_contrato  + '</td>';
+                    respuesta_html +='    <td style="vertical-align: normal;max-width: 300px;min-height: 200px;">' + experiencia.observaciones + '</td>';
+                    respuesta_html+='     <td><a href="'+ rutaSoportes + experiencia.soporte +'" target="_blank" rel="noopener noreferrer">'+ experiencia.soporte +'</a></td>';
+                    respuesta_html +='    <td class="text-center" style="min-width: 100px;">';
+                    respuesta_html +='        <form action="' + eliminarlaboralinformal_fin + '/' +  experiencia.id + '" class="d-inline form-eliminar" method="POST">';
+                    respuesta_html +=           '<input type="hidden" name="_token" value="'+$("input[name=_token]").val()+'" autocomplete="off">';
+                    respuesta_html +=           '<input type="hidden" name="_method" value="delete">';
+                    respuesta_html +='            <button type="submit"';
+                    respuesta_html +='                class="btn-accion-tabla eliminar tooltipsC text-danger"';
+                    respuesta_html +='                title="Eliminar este registro">';
+                    respuesta_html +='                <i class="fas fa-trash-alt"></i>';
+                    respuesta_html +='            </button>';
+                    respuesta_html +='        </form>';
+                    respuesta_html +='    </td>';
+                    respuesta_html +='</tr>';
+                    $("#informalModal").modal('hide');
+                    $('#tbodyExperienciaInformal').append(respuesta_html);
                     Sistema.notificaciones(
                         "Se registro correctamente la experiencia laboral",
                         "Sistema",
