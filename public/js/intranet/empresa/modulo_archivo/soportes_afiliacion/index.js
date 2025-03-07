@@ -32,217 +32,183 @@ $(document).ready(function () {
         var data = {
             id: id,
         };
-        // -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*-
-        var eliminarManual_ini = $("#eliminarManual").val();
-        eliminarManual_ini = eliminarManual_ini.substring(0,eliminarManual_ini.length - 1);
-        const eliminarManual_fin = eliminarManual_ini;
-        // -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*-
-        const data_archivo = $("#eliminarManual").attr("data_archivo") + '/';
-
         $.ajax({
             url: data_url,
             type: "GET",
             data: data,
             success: function (respuesta) {
                 var respuesta_html = "";
-                if (respuesta.areas.length > 0) {
-                    $.each(respuesta.areas, function (index, area) {
-                        $.each(area.cargos, function (index, cargo) {
-                            respuesta_html+='<tr>';
-                            respuesta_html+='    <td style="white-space:nowrap; vertical-align:top;">'+area.area+'</td>';
-                            respuesta_html+='    <td style="white-space:nowrap; vertical-align:top;">'+cargo.cargo+'</td>';
-                            if (cargo.manual != null) {
-                                respuesta_html+='    <td style="white-space:nowrap; vertical-align:top;"><a href="'+data_archivo + cargo.manual.url+'" target="_blank">'+ cargo.manual.titulo+'</a></td>';
-                                respuesta_html+='    <td style="white-space:nowrap; vertical-align:top;">'+ formatDate(cargo.manual.created_at) + '</td>';
-                            } else {
-                                respuesta_html+='    <td style="white-space:nowrap; vertical-align:top;">No registra manual</td>';
-                                respuesta_html+='    <td class="text-center" style="white-space:nowrap; vertical-align:top;"><span class="text-danger">---</span></td>';
-                            }
-                            if (cargo.manual != null) {
-                                respuesta_html +='<td class="text-center" style="min-width: 100px;">';
-                                respuesta_html +='    <form action="' + eliminarManual_fin  +  cargo.manual.id + '" class="d-inline form-eliminar" method="POST">';
-                                respuesta_html +=       '<input type="hidden" name="_token" value="'+$("input[name=_token]").val()+'" autocomplete="off">';
-                                respuesta_html +=       '<input type="hidden" name="_method" value="delete">';
-                                respuesta_html +='        <button type="submit"';
-                                respuesta_html +='            class="btn-accion-tabla eliminar tooltipsC text-danger"';
-                                respuesta_html +='            title="Eliminar este registro">';
-                                respuesta_html +='            <i class="fas fa-trash-alt"></i>';
-                                respuesta_html +='        </button>';
-                                respuesta_html +='    </form>';
-                                respuesta_html +='</td>';
-                            } else {
-                                respuesta_html+='<td class="text-center" style="white-space:nowrap; vertical-align:top;">';
-                                respuesta_html +='  <button type="button" class="btn-accion-tabla eliminar tooltipsC" onclick="valueIdCargo(\' ' + cargo.id +' \')" data-bs-toggle="modal" data-bs-target="#manualModal">';
-                                respuesta_html +='      <i class="fas fa-plus-circle text-success"></i>';
-                                respuesta_html +='  </button>';
-                                respuesta_html+=' </td>';
-                            }
-                            respuesta_html+='</tr>';
-                        });
-                    });
+                if (respuesta.empleados.length > 0) {
+                    recargarTabla(respuesta.empleados);
                 }
-                $("#tablaManuales").DataTable().destroy();
-                $("#tbody_manuales").html(respuesta_html);
-                asignarDataTableAjax('#tablaManuales',10,"portrait","Legal","listado de Manuales por cargo",false);
             },
             error: function () {},
         });
     });
-    //--------------------------------------------------------------------------
-    $("#formManualCargo").submit(function(e) {
-        e.preventDefault();
-        const form = $(this);
-        var formData = new FormData(this);
-        $.ajax({
-            url: form.attr("action"),
-            type: "POST",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function (respuesta) {
-                if (respuesta.mensaje == "ok") {
-                    recargarTabla();
-                    Sistema.notificaciones(
-                        "Se cargo el manual de manera correcta",
-                        "Sistema",
-                        "success"
-                    );
-                } else {
-                    Sistema.notificaciones(
-                        "No se pudo cargar el documento, solicite asistencia técnica",
-                        "Sistema",
-                        "error"
-                    );
-                }
-            },
-            error: function () {},
-        });
-      });
-
-      //-------------------------------------------------------
-    $(".tabla-borrando_manuales").on("submit", ".form-eliminar", function () {
-        event.preventDefault();
-        const form = $(this);
-        Swal.fire({
-            title: "¿Está seguro que desea eliminar el manual?",
-            text: "Esta acción no se puede deshacer!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Si, Borrar!",
-            cancelButtonText: "Cancelar",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                ajaxRequest(form);
-            }
-        });
-    });
-
-    function ajaxRequest(form) {
-        $.ajax({
-            url: form.attr("action"),
-            type: "POST",
-            data: form.serialize(),
-            success: function (respuesta) {
-                if (respuesta.mensaje == "ok") {
-                    recargarTabla();
-                    Sistema.notificaciones(
-                        "El registro fue eliminado correctamente",
-                        "Sistema",
-                        "success"
-                    );
-                } else {
-                    Sistema.notificaciones(
-                        "El registro no pudo ser eliminado, hay recursos usandolo",
-                        "Sistema",
-                        "error"
-                    );
-                }
-            },
-            error: function () {},
-        });
-    }
     //--------------------------------------------------------------------------------------------
 });
-function recargarTabla(){
-    $("#manualModal").modal('hide');
-    const data_url = $('#empresa_id').attr("data_url");
-    const id = $('#empresa_id').val();
+function verSoportes(id){
+    const data_soportes = $('#datosUpLaod').attr("data_soportes");
+    const ruta_soporte = $('#datosUpLaod').attr("ruta_soporte");
+    const id_empl = id;
     var data = {
-        id: id,
+        id: id_empl,
     };
-    // -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*-
-    var eliminarManual_ini = $("#eliminarManual").val();
-    eliminarManual_ini = eliminarManual_ini.substring(0,eliminarManual_ini.length - 1);
-    const eliminarManual_fin = eliminarManual_ini;
-    // -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*- -*-
-    const data_archivo = $("#eliminarManual").attr("data_archivo") + '/';
-
     $.ajax({
-        url: data_url,
+        url: data_soportes,
         type: "GET",
         data: data,
         success: function (respuesta) {
             var respuesta_html = "";
-            if (respuesta.areas.length > 0) {
-                $.each(respuesta.areas, function (index, area) {
-                    $.each(area.cargos, function (index, cargo) {
-                        respuesta_html+='<tr>';
-                        respuesta_html+='    <td style="white-space:nowrap; vertical-align:top;">'+area.area+'</td>';
-                        respuesta_html+='    <td style="white-space:nowrap; vertical-align:top;">'+cargo.cargo+'</td>';
-                        if (cargo.manual != null) {
-                            respuesta_html+='    <td style="white-space:nowrap; vertical-align:top;"><a href="'+data_archivo + cargo.manual.url+'" target="_blank">'+ cargo.manual.titulo+'</a></td>';
-                            respuesta_html+='    <td style="white-space:nowrap; vertical-align:top;">'+ formatDate(cargo.manual.created_at) + '</td>';
-                        } else {
-                            respuesta_html+='    <td style="white-space:nowrap; vertical-align:top;">No registra manual</td>';
-                            respuesta_html+='    <td class="text-center" style="white-space:nowrap; vertical-align:top;"><span class="text-danger">---</span></td>';
-                        }
-                        if (cargo.manual != null) {
-                            respuesta_html +='<td class="text-center" style="min-width: 100px;">';
-                            respuesta_html +='    <form action="' + eliminarManual_fin +  cargo.manual.id + '" class="d-inline form-eliminar" method="POST">';
-                            respuesta_html +=       '<input type="hidden" name="_token" value="'+$("input[name=_token]").val()+'" autocomplete="off">';
-                            respuesta_html +=       '<input type="hidden" name="_method" value="delete">';
-                            respuesta_html +='        <button type="submit"';
-                            respuesta_html +='            class="btn-accion-tabla eliminar tooltipsC text-danger"';
-                            respuesta_html +='            title="Eliminar este registro">';
-                            respuesta_html +='            <i class="fas fa-trash-alt"></i>';
-                            respuesta_html +='        </button>';
-                            respuesta_html +='    </form>';
-                            respuesta_html +='</td>';
-                        } else {
-                            respuesta_html+='<td class="text-center" style="white-space:nowrap; vertical-align:top;">';
-                            respuesta_html +='  <button type="button" class="btn-accion-tabla eliminar tooltipsC" data-bs-toggle="modal" data-bs-target="#manualModal">';
-                            respuesta_html +='      <i class="fas fa-plus-circle text-success"></i>';
-                            respuesta_html +='  </button>';
-                            respuesta_html+=' </td>';
-                        }
-                        respuesta_html+='</tr>';
-                    });
-                });
-            }
-            $("#tablaManuales").DataTable().destroy();
-            $("#tbody_manuales").html(respuesta_html);
-            asignarDataTableAjax('#tablaManuales',10,"portrait","Legal","listado de Manuales por cargo",false);
+            respuesta_html+='<table class="table">';
+            respuesta_html+='<tbody></tbody>';
+            $.each(respuesta.soportes, function (index, soporte) {
+                //respuesta_html += '<li class="list-group-item"><a href="'+ ruta_soporte + soporte.url+'" target="_blank">'+soporte.titulo+'</a></li>';
+                respuesta_html+='<tr id="tr_'+soporte.id+'" style="font-size: 0.8em;">';
+                var titulo = '';
+                if (soporte.titulo.length>60) {
+                    titulo = soporte.titulo.substring(0, 60) + '...';
+                } else {
+                    titulo = soporte.titulo;
+                }
+                respuesta_html+='<td class="text-left" scope="row"><a href="'+ ruta_soporte + soporte.url+'" target="_blank">'+titulo+'</a></td>';
+                respuesta_html+='<td><button class="btn-accion-tabla eliminar tooltipsC" title="Eliminar este registro" onClick="borrarSoporte(\''+soporte.id+'\')"><i class="fa fa-fw fa-trash text-danger"></i></button></td>';
+                respuesta_html+='</tr>';
+
+            });
+            respuesta_html+='</tbody>';
+            respuesta_html+='</table>';
+            Swal.fire({
+                width: 700,
+                title: "Soportes",
+                //html: '<ul class="list-group" style="font-size: 0.8em;">'+respuesta_html+'</ul>',
+                html: respuesta_html,
+                confirmButtonText: 'Cerrar',
+                showClass: {
+                    popup: `animate__animated
+                            animate__fadeInUp
+                            animate__faster`
+                },
+                hideClass: {
+                    popup: `animate__animated
+                            animate__fadeOutDown
+                            animate__faster`
+                }
+            });
         },
         error: function () {},
     });
+
 }
 
-function formatDate(date) {
-    var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
+function cargarSoportes(id){
+    "use strict'";
+    const data_url = $('#datosUpLaod').attr("data_url");
+    Swal.fire({
+        title: 'Ingrese el archivo soporte',
+        input: 'file',
+        showCancelButton: true,
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Guardar',
+        customClass: {
+          validationMessage: 'my-validation-message',
+        },
+        preConfirm: (value) => {
+          if (!value) {
+            Swal.showValidationMessage('El archivo es requerido')
+          }
+        },
+      }).then((file) => {
+        if (file.value) {
+            var formData = new FormData();
+            var file = $('.swal2-file')[0].files[0];
+            formData.append("empleado_id", id);
+            formData.append("fileToUpload", file);
+            $.ajax({
+                async: true,
+                headers: { 'X-CSRF-TOKEN': $("input[name=_token]").val() },
+                method: 'post',
+                url: data_url,
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (resp) {
+                    if (resp.mensaje == "ok") {
+                        recargarTabla(resp.empleados);
+                        Swal.fire("Archivo Guardado", "", "success");
+                    } else {
+                        Swal.fire("La carga de archivo no fue posible, Intentalo nuevamente", "", "error");
+                    }
 
-    if (month.length < 2)
-        month = '0' + month;
-    if (day.length < 2)
-        day = '0' + day;
-
-    return [year, month, day].join('-');
+                },
+                error: function() {
+                    Swal({ type: 'error', title: 'Oops...', text: 'Something went wrong!' })
+                }
+            })
+        }
+    })
 }
-
-function valueIdCargo(id_cargo){
-    $('#id_cargo').val(id_cargo);
+function recargarTabla (empleados){
+    var respuesta_html = '';
+    $("#tablaSoportes").DataTable().destroy();
+    $("#tbody_soportes").html(respuesta_html);
+    var soportes = '';
+    $.each(empleados, function (index,  empleado) {
+        respuesta_html+='<tr>';
+        respuesta_html+='    <td style="white-space:nowrap;">'+empleado.cargo.area.area+'</td>';
+        respuesta_html+='    <td style="white-space:nowrap;">'+empleado.cargo.cargo+'</td>';
+        respuesta_html+='    <td style="white-space:nowrap;">'+empleado.nombres + ' ' + empleado.apellidos +'</td>';
+        respuesta_html+='    <td style="white-space:nowrap;" class="text-center">';
+        if (empleado.soportes.length === 0) {
+            soportes = '<span class="badge bg-warning pt-1 pb-1 pl-3 pr-3">Sin Soportes</span>';
+        } else {
+            soportes = '<button type="button" class="btn-accion-tabla bg-gradient-info tooltipsC pt-1 pb-1 pl-3 pr-3 rounded-1" onclick="verSoportes('+ empleado.id +')"><i class="fas fa-eye mr-3"></i> '+empleado.soportes.length+'</button>';
+        }
+        respuesta_html+=soportes;
+        respuesta_html+='    </td>';
+        respuesta_html+='    <td style="white-space:nowrap;" class="text-center">';
+        respuesta_html+='        <button type="button" class="btn-accion-tabla bg-gradient-success tooltipsC pt-1 pb-1 pl-3 pr-3 rounded-1" onclick="cargarSoportes('+ empleado.id +')"><i class="fas fa-plus-circle" aria-hidden="true"></i></button>';
+        respuesta_html+='    </td>';
+        respuesta_html+='</tr>';
+    });
+    $("#tablaSoportes").DataTable().destroy();
+    $("#tbody_soportes").html(respuesta_html);
+    asignarDataTableAjax('#tablaSoportes',"listado de soportes por usuario");
+}
+function borrarSoporte(id_soporte){
+    Swal.fire({
+        title: "¿Está seguro que desea eliminar el soporte?",
+        text: "Esta acción no se puede deshacer!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, Borrar!",
+        cancelButtonText: "Cancelar",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const data_url = $('#borrarSoportes').attr("data_url");
+            var data = {
+                id: id_soporte,
+            };
+            $.ajax({
+                async: true,
+                headers: { 'X-CSRF-TOKEN': $("input[name=_token]").val() },
+                url: data_url,
+                type: "DELETE",
+                data: data,
+                success: function (respuesta) {
+                    if (respuesta.mensaje == "ok") {
+                        recargarTabla(respuesta.empleados);
+                        Sistema.notificaciones("El soporte fue eliminado correctamente","Sistema","success"
+                        );
+                    } else {
+                        Sistema.notificaciones("El soporte no pudo ser eliminado, hay recursos usandolo","Sistema","error"
+                        );
+                    }
+                },
+                error: function () {},
+            });
+        }
+    });
 }

@@ -158,6 +158,7 @@ class EmpleadoController extends Controller
         $usuario_editar->update([
             'name' => ucwords(strtolower($nombres_array[0])) . ' ' . ucwords(strtolower($apellidos_array[0])),
             'email' => strtolower($request['email']),
+            'estado' => $request->has('estado') ? 1 : 0,
         ]);
         $usuario_editar->syncRoles($request['roles']);
         // - - - - - - - - - - - - - - - - - - - - - - - -
@@ -200,6 +201,7 @@ class EmpleadoController extends Controller
             'foto' => $nombrefoto,
             'lider' => $lider,
             'mgl' => $mgl,
+            'estado' => $request->has('estado') ? 1 : 0,
         ]);
 
         if ($lider) {

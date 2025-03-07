@@ -87,6 +87,7 @@
             </table>
         </div>
     </div>
+
 @endsection
 
 @section('footer_card')

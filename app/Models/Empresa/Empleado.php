@@ -63,6 +63,11 @@ class Empleado extends Model
         return $this->hasMany(ExperienciaIndp::class, 'empleado_id', 'id');
     }
     //----------------------------------------------------------------------------------
+    public function soportes()
+    {
+        return $this->hasMany(SoporteAarchivoEmpleado::class, 'empleado_id', 'id');
+    }
+    //----------------------------------------------------------------------------------
     //==================================================================================
     //----------------------------------------------------------------------------------
     public function miembro_proyectos()

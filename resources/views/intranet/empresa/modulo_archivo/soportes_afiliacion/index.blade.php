@@ -1,6 +1,7 @@
 <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 @extends('intranet.layout.app')
 @section('css_pagina')
+
 @endsection
 @section('tituloPagina')
     <i class="far fa-folder-open" aria-hidden="true"></i> Módulo Archivo
@@ -44,14 +45,14 @@
                         <span class="form-control form-control-sm">{{$grupo[0]->empresas[0]->empresa}}</span>
                     @else
                         @if ($grupos->count()==1)
-                            <select id="empresa_id" class="form-control form-control-sm" data_url="{{ route('getUsuariosHojasVida') }}">
+                            <select id="empresa_id" class="form-control form-control-sm" data_url="{{ route('hojas_vida.getCargarEmpleadosEmpresa') }}">
                                 <option value="">Elija una Empresa</option>
                                 @foreach ($grupos[0]->empresas as $empresa)
                                     <option value="{{ $empresa->id }}">{{ $empresa->empresa }}</option>
                                 @endforeach
                             </select>
                         @else
-                            <select id="empresa_id" class="form-control form-control-sm" data_url="{{ route('manuales.getAreasManuales') }}">
+                            <select id="empresa_id" class="form-control form-control-sm" data_url="{{ route('hojas_vida.getCargarEmpleadosEmpresa') }}">
                                 <option value="">Elija grupo</option>
                             </select>
                         @endif
@@ -62,17 +63,17 @@
         <hr>
         <div class="row">
             <div class="col-12 table-responsive" style="font-size: 0.85em;">
-                <table class="table display table-striped table-hover table-sm  tabla-borrando_manuales tabla_data_table" id="tablaManuales">
+                <table class="table display table-striped table-hover table-sm" id="tablaSoportes">
                     <thead>
                         <tr>
-                            <th class="text-center" scope="col">Área</th>
-                            <th class="text-center" scope="col">Cargo</th>
-                            <th class="text-center" scope="col">Manual</th>
-                            <th class="text-center" scope="col">Ultima Actualización</th>
-                            <th class="text-center" scope="col">Opciones</th>
+                            <th style="white-space:nowrap;" class="text-center" scope="col">Área</th>
+                            <th style="white-space:nowrap;" class="text-center" scope="col">Cargo</th>
+                            <th style="white-space:nowrap;" class="text-center" scope="col">Empleado</th>
+                            <th style="white-space:nowrap;" class="text-center" scope="col">Soportes</th>
+                            <th style="white-space:nowrap;" class="text-center" scope="col"></th>
                         </tr>
                     </thead>
-                    <tbody id="tbody_manuales">
+                    <tbody id="tbody_soportes">
 
                     </tbody>
                 </table>
@@ -125,12 +126,25 @@
     </div>
 </div>
 <!-- Modal addManual -->
-<input type="hidden" id="eliminarManual" value="{{route('manuales.eliminarManual',['id' => 1])}}" data_archivo ="{{asset('documentos/manuales')}}">
-@csrf
+<div class="row">
+    <div class="col-12">
+        <input type="hidden" id="datosUpLaod"
+                data_soportes="{{route('hojas_vida.getSoporteAfiliacion')}}"
+                data_url="{{route('hojas_vida.setSoporteAfiliacion')}}"
+                ruta_soporte="{{asset('documentos/soportes') . '/'}}">
+        <input type="hidden" id="borrarSoportes" data_url="{{route('hojas_vida.eliminarSoporte')}}">
+        @csrf
+    </div>
+</div>
+
 @endsection
 
 @section('script_pagina')
+<script src="{{asset('js/intranet/general/popper.min.js')}}"></script>
     @include('intranet.layout.dataTableNew')
     <script src="{{ asset('js/intranet/general/datatablesini.js') }}"></script>
     <script src="{{ asset('js/intranet/empresa/modulo_archivo/soportes_afiliacion/index.js') }}"></script>
+
+
+
 @endsection

@@ -141,6 +141,23 @@
                 <label class="requerido" for="direccion">Dirección</label>
                 <input type="text" class="form-control form-control-sm" value="{{ old('direccion', $empleado_edit->direccion ?? '') }}" name="direccion" id="direccion" required>
             </div>
+            @isset($empleado_edit)
+                <div class="col-12 mb-3">
+                    <h6>Estado:</h6>
+                    @if ($empleado_edit->estado === 1)
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="estado"  name="estado" checked>
+                            <label class="form-check-label" for="estado">Activo</label>
+                        </div>
+                    @else
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="estado" name="estado" >
+                            <label class="form-check-label" for="estado">Inactivo</label>
+                        </div>
+                    @endif
+                </div>
+                <hr>
+            @endisset
         </div>
         <hr>
         <div class="row">

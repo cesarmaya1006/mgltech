@@ -14,7 +14,7 @@
     function asignarDataTableAjax(table_id, titulo_tabla) {
         $(table_id).DataTable({
             scrollX: true,
-            lengthMenu: [10, 15, 25, 50, 75, 100],
+            lengthMenu: [5,10, 15, 25, 50, 75, 100],
             pageLength: 5,
             dom: "lBfrtip",
             buttons: [

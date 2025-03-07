@@ -314,22 +314,43 @@ Route::prefix('dashboard')->middleware(['auth:sanctum',config('jetstream.auth_se
                 Route::get('getAreasManuales', 'getAreasManuales')->name('manuales.getAreasManuales');
                 Route::post('addManual', 'addManual')->name('manuales.addManual');
                 Route::delete('eliminarManual/{id}', 'eliminarManual')->name('manuales.eliminarManual');
-
             });
             Route::controller(SoportesAfiliacionController::class)->prefix('soportes_afiliacion')->group(function () {
                 Route::get('', 'index')->name('soportes_afiliacion.index');
+                Route::get('getCargarEmpleadosEmpresa','getCargarEmpleadosEmpresa')->name('hojas_vida.getCargarEmpleadosEmpresa');
+                Route::post('setSoporteAfiliacion','setSoporteAfiliacion')->name('hojas_vida.setSoporteAfiliacion');
+                Route::get('getSoporteAfiliacion','getSoporteAfiliacion')->name('hojas_vida.getSoporteAfiliacion');
+                Route::delete('eliminarSoporte', 'destroy')->name('hojas_vida.eliminarSoporte');
+
+
             });
             Route::controller(DocumentosContractualesController::class)->prefix('documentos_contractuales')->group(function () {
                 Route::get('', 'index')->name('documentos_contractuales.index');
+                Route::get('getCargarEmpleadosEmpresa','getCargarEmpleadosEmpresa')->name('documentos_contractuales.getCargarEmpleadosEmpresa');
+                Route::get('getDocumentosContractuales','getDocumentosContractuales')->name('documentos_contractuales.getDocumentosContractuales');
+                Route::post('setDocumentosContractuales','setDocumentosContractuales')->name('documentos_contractuales.setDocumentosContractuales');
+                Route::delete('eliminarDocumentosContractuales', 'destroy')->name('documentos_contractuales.eliminarDocumentosContractuales');
             });
             Route::controller(SitLabGenController::class)->prefix('sit_lab_gen')->group(function () {
                 Route::get('', 'index')->name('sit_lab_gen.index');
+                Route::get('getCargarEmpleadosEmpresa','getCargarEmpleadosEmpresa')->name('sit_lab_gen.getCargarEmpleadosEmpresa');
+                Route::get('getDocumentosContractuales','getDocumentosContractuales')->name('sit_lab_gen.getDocumentosContractuales');
+                Route::post('setDocumentosContractuales','setDocumentosContractuales')->name('sit_lab_gen.setDocumentosContractuales');
+                Route::delete('eliminarDocumentosContractuales', 'destroy')->name('sit_lab_gen.eliminarDocumentosContractuales');
             });
             Route::controller(HistClinicasOcupController::class)->prefix('histclinicasocup')->group(function () {
                 Route::get('', 'index')->name('histclinicasocup.index');
+                Route::get('getCargarEmpleadosEmpresa','getCargarEmpleadosEmpresa')->name('histclinicasocup.getCargarEmpleadosEmpresa');
+                Route::get('getSoportes','getSoportes')->name('histclinicasocup.getSoportes');
+                Route::post('setSoportes','setSoportes')->name('histclinicasocup.setSoportes');
+                Route::delete('eliminarSoportes', 'destroy')->name('histclinicasocup.eliminarSoportes');
             });
             Route::controller(DotacionesController::class)->prefix('dotaciones')->group(function () {
                 Route::get('', 'index')->name('dotaciones.index');
+                Route::get('getCargarEmpleadosEmpresa','getCargarEmpleadosEmpresa')->name('dotaciones.getCargarEmpleadosEmpresa');
+                Route::get('getSoportes','getSoportes')->name('dotaciones.getSoportes');
+                Route::post('setSoportes','setSoportes')->name('dotaciones.setSoportes');
+                Route::delete('eliminarSoportes', 'destroy')->name('dotaciones.eliminarSoportes');
             });
             Route::controller(ProcesoDiscipController::class)->prefix('proceso_discip')->group(function () {
                 Route::get('', 'index')->name('proceso_discip.index');
