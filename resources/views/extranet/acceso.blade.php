@@ -32,8 +32,7 @@
                             ACCESO DE USUARIOS
                         </div>
                     </div>
-                    <form class="row mt-2" style="width: 100%;" action="{{ route('login') }}" method="post"
-                        autocomplete="off">
+                    <form class="row mt-2" style="width: 100%;" action="{{ route('login') }}" method="post" autocomplete="off">
                         @method('post')
                         @csrf
                         <div class="col-12 d-flex justify-content-center flex-column">

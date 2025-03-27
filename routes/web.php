@@ -354,21 +354,45 @@ Route::prefix('dashboard')->middleware(['auth:sanctum',config('jetstream.auth_se
             });
             Route::controller(ProcesoDiscipController::class)->prefix('proceso_discip')->group(function () {
                 Route::get('', 'index')->name('proceso_discip.index');
+                Route::get('getCargarEmpleadosEmpresa','getCargarEmpleadosEmpresa')->name('proceso_discip.getCargarEmpleadosEmpresa');
+                Route::get('getSoportes','getSoportes')->name('proceso_discip.getSoportes');
+                Route::post('setSoportes','setSoportes')->name('proceso_discip.setSoportes');
+                Route::delete('eliminarSoportes', 'destroy')->name('proceso_discip.eliminarSoportes');
             });
             Route::controller(EvaluacionDesempController::class)->prefix('evaluacion_desemp')->group(function () {
                 Route::get('', 'index')->name('evaluacion_desemp.index');
+                Route::get('getCargarEmpleadosEmpresa','getCargarEmpleadosEmpresa')->name('evaluacion_desemp.getCargarEmpleadosEmpresa');
+                Route::get('getSoportes','getSoportes')->name('evaluacion_desemp.getSoportes');
+                Route::post('setSoportes','setSoportes')->name('evaluacion_desemp.setSoportes');
+                Route::delete('eliminarSoportes', 'destroy')->name('evaluacion_desemp.eliminarSoportes');
             });
             Route::controller(VacacionesController::class)->prefix('vacaciones')->group(function () {
                 Route::get('', 'index')->name('vacaciones.index');
+                Route::get('getCargarEmpleadosEmpresa','getCargarEmpleadosEmpresa')->name('vacaciones.getCargarEmpleadosEmpresa');
+                Route::get('getSoportes','getSoportes')->name('vacaciones.getSoportes');
+                Route::post('setSoportes','setSoportes')->name('vacaciones.setSoportes');
+                Route::delete('eliminarSoportes', 'destroy')->name('vacaciones.eliminarSoportes');
             });
             Route::controller(DocRetiroController::class)->prefix('doc_retiro')->group(function () {
                 Route::get('', 'index')->name('doc_retiro.index');
+                Route::get('getCargarEmpleadosEmpresa','getCargarEmpleadosEmpresa')->name('doc_retiro.getCargarEmpleadosEmpresa');
+                Route::get('getSoportes','getSoportes')->name('doc_retiro.getSoportes');
+                Route::post('setSoportes','setSoportes')->name('doc_retiro.setSoportes');
+                Route::delete('eliminarSoportes', 'destroy')->name('doc_retiro.eliminarSoportes');
             });
             Route::controller(CapacitacionController::class)->prefix('capacitacion')->group(function () {
                 Route::get('', 'index')->name('capacitacion.index');
+                Route::get('getCargarEmpleadosEmpresa','getCargarEmpleadosEmpresa')->name('capacitacion.getCargarEmpleadosEmpresa');
+                Route::get('getSoportes','getSoportes')->name('capacitacion.getSoportes');
+                Route::post('setSoportes','setSoportes')->name('capacitacion.setSoportes');
+                Route::delete('eliminarSoportes', 'destroy')->name('capacitacion.eliminarSoportes');
             });
             Route::controller(PoliticaController::class)->prefix('politica')->group(function () {
                 Route::get('', 'index')->name('politica.index');
+                Route::get('getCargarEmpleadosEmpresa','getCargarEmpleadosEmpresa')->name('politica.getCargarEmpleadosEmpresa');
+                Route::get('getSoportes','getSoportes')->name('politica.getSoportes');
+                Route::post('setSoportes','setSoportes')->name('politica.setSoportes');
+                Route::delete('eliminarSoportes', 'destroy')->name('politica.eliminarSoportes');
             });
             Route::controller(DiagnosticosController::class)->prefix('diagnosticos')->group(function () {
                 Route::get('', 'index')->name('diagnosticos.index');
@@ -381,6 +405,8 @@ Route::prefix('dashboard')->middleware(['auth:sanctum',config('jetstream.auth_se
             });
             Route::controller(PermisosArchivoController::class)->prefix('permisosarchivo')->group(function () {
                 Route::get('', 'index')->name('permisosarchivo.index');
+                Route::get('getCargarEmpleadosEmpresa','getCargarEmpleadosEmpresa')->name('permisosarchivo.getCargarEmpleadosEmpresa');
+                Route::get('getPermisosEmpleado','getPermisosEmpleado')->name('permisosarchivo.getPermisosEmpleado');
             });
         });
         // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
