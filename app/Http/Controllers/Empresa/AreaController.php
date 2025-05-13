@@ -20,7 +20,7 @@ class AreaController extends Controller
         $roles = collect($usuario->roles);
         $grupos = GrupoEmpresa::get();
         $areas = Area::get();
-        if ($usuario->hasRole('Administrador Sistema')) {
+        if ($usuario->hasRole(['Administrador Sistema','Administrador'])) {
             return view('intranet.empresa.area.index_admin', compact('grupos'));
         } else {
             $grupo = $usuario->empleado->cargo->area->empresa->grupo;

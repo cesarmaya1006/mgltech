@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('empresas', function (Blueprint $table) {
             $table->bigIncrements('id')->autoIncrement();
-            $table->unsignedBigInteger('emp_grupo_id');
+            $table->unsignedBigInteger('emp_grupo_id')->nullable();
             $table->foreign('emp_grupo_id', 'fk_empresa_emp_grupos')->references('id')->on('emp_grupos')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedBigInteger('tipo_documento_id');
             $table->foreign('tipo_documento_id', 'fk_empresa_tipo_documentos')->references('id')->on('tipo_documentos')->onDelete('restrict')->onUpdate('restrict');

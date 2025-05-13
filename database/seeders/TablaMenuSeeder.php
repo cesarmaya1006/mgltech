@@ -160,6 +160,7 @@ class TablaMenuSeeder extends Seeder
         // -- * -- * -- * -- * -- * -- * -- * -- * -- * -- * -- * -- * -- * -- * -- * -- * -- * -- * -- * --
         foreach ($menus as $menu) {
             DB::table('menu_rol')->insert(['menu_id' => $menu->id, 'rol_id' => 1,]);
+            DB::table('menu_rol')->insert(['menu_id' => $menu->id, 'rol_id' => 2,]);
         }
     }
     public function sub_menu($Array_1, $x)

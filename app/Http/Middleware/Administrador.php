@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminEmp
+class Administrador
 {
     /**
      * Handle an incoming request.
@@ -27,7 +27,7 @@ class AdminEmp
         foreach (session('roles') as $rol) {
             $rolArray[] = $rol['name'];
         }
-        return in_array("Administrador Sistema", $rolArray)||in_array("Administrador", $rolArray)||in_array("Administrador Empresa", $rolArray);
+        return in_array("Administrador Sistema", $rolArray)||in_array("Administrador", $rolArray);
 
     }
 }

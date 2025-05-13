@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Empresa;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EmpresaRequest;
 use App\Models\Config\TipoDocumento;
 use App\Models\Empresa\Empresa;
 use App\Models\Empresa\GrupoEmpresa;
@@ -27,13 +28,14 @@ class EmpresaController extends Controller
     public function create()
     {
         $tiposdocu = TipoDocumento::get();
-        return view('intranet.empresas.empresas.crear',compact('tiposdocu'));
+        $grupos = GrupoEmpresa::get();
+        return view('intranet.empresas.empresas.crear',compact('tiposdocu','grupos'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EmpresaRequest $request)
     {
         // - - - - - - - - - - - - - - - - - - - - - - - -
         if ($request->hasFile('logo')) {
@@ -58,7 +60,7 @@ class EmpresaController extends Controller
         $empresa_new['contacto'] = ucwords(strtolower($request['contacto']));
         $empresa_new['cargo'] = ucwords(strtolower($request['cargo']));
         $empresa = Empresa::create($empresa_new);
-        return redirect('configuracion_sis/empresa')->with('mensaje', 'Empresa creado con éxito');
+        return redirect('dashboard/configuracion_sis/empresas')->with('mensaje', 'Empresa creada con éxito');
     }
 
     /**
@@ -91,7 +93,7 @@ class EmpresaController extends Controller
             $request['estado'] = 0;
         }
         Empresa::findOrFail($id)->update($request->all());
-        return redirect('configuracion_sis/empresa')->with('mensaje', 'Empresa actualizada con éxito');
+        return redirect('dashboard/configuracion_sis/empresas')->with('mensaje', 'Empresa actualizada con éxito');
     }
 
     /**

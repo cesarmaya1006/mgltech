@@ -10,7 +10,7 @@
     <li class="breadcrumb-item active">Cargos</li>
 @endsection
 @section('titulo_card')
-    @if (session('rol_principal_id')== 1)
+    @if (session('rol_principal_id')== 1 || session('rol_principal_id')== 2)
         Listado de Cargos por Empresas
     @else
         Listado de Cargos
@@ -27,7 +27,7 @@
 @section('cuerpoPagina')
     @can('cargos.index')
     <div class="row">
-        @if (session('rol_principal_id')== 1)
+        @if (session('rol_principal_id')== 1 || session('rol_principal_id')== 2)
             <div class="col-12 col-md-3 form-group">
                 <label for="emp_grupo_id">Grupo Empresarial</label>
                 <select id="emp_grupo_id" class="form-control form-control-sm" data_url="{{ route('grupo_empresas.getEmpresas') }}">
@@ -43,7 +43,7 @@
         <div class="col-12 col-md-3 form-group" id="caja_empresas">
             <label for="empresa_id">Empresa</label>
             <select id="empresa_id" class="form-control form-control-sm" data_url="{{ route('cargos.getAreas') }}">
-                <option value="">{{session('rol_principal_id')== 1?'Elija un Grupo Empresarial':'Elija empresa'}}</option>
+                <option value="">{{session('rol_principal_id')== 1 || session('rol_principal_id')== 2?'Elija un Grupo Empresarial':'Elija empresa'}}</option>
                 @if (isset($grupo))
                     @foreach ($grupo->empresas as $empresa)
                         <option value="{{ $empresa->id }}">{{ $empresa->empresa }}</option>

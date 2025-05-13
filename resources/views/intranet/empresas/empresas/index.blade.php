@@ -26,6 +26,7 @@
                 <label for="emp_grupo_id">Grupo Empresarial</label>
                 <select id="emp_grupo_id" class="form-control form-control-sm" data_url="{{ route('grupo_empresas.getEmpresas') }}">
                     <option value="">Elija un Grupo Empresarial</option>
+                    <option value="x">Sin grupo Empresarial</option>
                     @foreach ($grupos as $grupo)
                         <option value="{{ $grupo->id }}">
                             {{ $grupo->grupo }}
@@ -35,15 +36,23 @@
             </div>
         </div>
         <hr>
+        <input type="hidden" id="datos_tabla"
+                data_url_empresa_edit="{{ route('empresa.edit', 1) }}"
+                data_url_empresa_activar="{{ route('empresa.activar', 1) }}">
+        @can('empresa.edit')
+            <input type="hidden" id="permiso_empresa_edit" value="1">
+        @else
+            <input type="hidden" id="permiso_empresa_edit" value="0">
+        @endcan
+        @can('empresa.activar')
+            <input type="hidden" id="permiso_empresa_activar" value="1">
+        @else
+            <input type="hidden" id="permiso_empresa_activar" value="0">
+        @endcan
+
         <div class="row" id="caja_tabla_empresas">
             <div class="col-12">
                 <div class="col-12">
-                    <input type="hidden" name="titulo_tabla" id="titulo_tabla" value="Listado de Grupos Empresariales">
-                    <input type="hidden" id="control_dataTable" value="1">
-                    <input type="hidden" id="grupo_empresas_edit" data_url="{{ route('empresa.edit', ['id' => 1]) }}">
-                    <input type="hidden" id="grupo_empresas_destroy" data_url="{{ route('empresa.destroy', ['id' => 1]) }}">
-                    @csrf @method('delete')
-
                     <div class="col-12">
                         <input type="hidden" name="titulo_tabla" id="titulo_tabla" value="Listado de Grupos Empresariales">
                         <table class="table display table-striped table-hover table-sm  tabla-borrando tabla_data_table" id="tablaEmpresas">
@@ -92,6 +101,5 @@
 @section('script_pagina')
     @include('intranet.layout.dataTableNew')
     <script src="{{ asset('js/intranet/general/datatablesini.js') }}"></script>
-
     <script src="{{ asset('js/intranet/empresas/empresa/index.js') }}"></script>
 @endsection

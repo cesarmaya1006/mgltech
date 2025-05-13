@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Empresa;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GrupoEmpresaRequest;
 use App\Models\Config\TipoDocumento;
 use App\Models\Empresa\Empresa;
 use App\Models\Empresa\GrupoEmpresa;
@@ -31,10 +32,10 @@ class GrupoEmpresaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(GrupoEmpresaRequest $request)
     {
         GrupoEmpresa::create($request->all());
-        return redirect('configuracion_sis/grupo_empresas')->with('mensaje', 'Grupo Empresarial creado con éxito');
+        return redirect('dashboard/configuracion_sis/grupo_empresas')->with('mensaje', 'Grupo Empresarial creado con éxito');
     }
 
     /**
@@ -73,7 +74,7 @@ class GrupoEmpresaController extends Controller
             }
         }
         GrupoEmpresa::findOrFail($id)->update($request->all());
-        return redirect('configuracion_sis/grupo_empresas')->with('mensaje', 'Grupo Empresarial actualizado con exito');
+        return redirect('dashboard/configuracion_sis/grupo_empresas')->with('mensaje', 'Grupo Empresarial actualizado con exito');
     }
 
     /**
@@ -115,7 +116,13 @@ class GrupoEmpresaController extends Controller
     public function getEmpresas(Request $request)
     {
         if ($request->ajax()) {
-            return response()->json(['empresas' => Empresa::where('emp_grupo_id', $_GET['id'])->get()]);
+            if ($_GET['id'] =='x') {
+                $empresas = Empresa::with('tipos_docu')->where('emp_grupo_id', null)->get();
+            } else {
+                $empresas = Empresa::with('tipos_docu')->where('emp_grupo_id', $_GET['id'])->get();
+            }
+
+            return response()->json(['empresas' => $empresas]);
         } else {
             abort(404);
         }

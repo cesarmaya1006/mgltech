@@ -38,6 +38,7 @@ use App\Http\Controllers\Proyectos\HistorialController;
 use App\Http\Controllers\Proyectos\ProyectoController;
 use App\Http\Controllers\Proyectos\TareaController;
 use App\Http\Middleware\AdminEmp;
+use App\Http\Middleware\Administrador;
 use App\Http\Middleware\AdminSistema;
 use App\Http\Middleware\Empleado;
 use Illuminate\Support\Facades\Route;
@@ -81,6 +82,9 @@ Route::prefix('dashboard')->middleware(['auth:sanctum',config('jetstream.auth_se
             Route::post('guardar', 'store')->name('menu.rol.store');
         });
         // ----------------------------------------------------------------------------------------
+    });
+    //===================================================================================================
+    Route::prefix('configuracion_sis')->middleware(Administrador::class)->group(function (){
         /* Ruta Administrador del Sistema Menu Empresas*/
         Route::controller(MenuEmpresaController::class)->prefix('permisos_menus_empresas')->group(function () {
             Route::get('', 'index')->name('permisos_menus_empresas.index');
@@ -142,7 +146,7 @@ Route::prefix('dashboard')->middleware(['auth:sanctum',config('jetstream.auth_se
     });
     //===================================================================================================
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    Route::prefix('configuracion')->middleware(AdminEmp::class)->group(function () {
+    Route::prefix('configuracion')->middleware([AdminEmp::class,Administrador::class])->group(function () {
         // ------------------------------------------------------------------------------------
         // Ruta Administrador del Sistema Areas
         Route::controller(AreaController::class)->prefix('areas')->group(function () {

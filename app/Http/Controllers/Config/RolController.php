@@ -31,7 +31,7 @@ class RolController extends Controller
     public function store(Request $request)
     {
         Role::create(['name' => ucwords(strtolower($request['name']))]);
-        return redirect('configuracion_sis/rol')->with('mensaje', 'Rol creado con éxito');
+        return redirect('dashboard/configuracion_sis/rol')->with('mensaje', 'Rol creado con éxito');
     }
 
     /**
@@ -58,7 +58,7 @@ class RolController extends Controller
     {
         $rol_edit['name'] = ucwords(strtolower($request['name']));
         Role::findOrFail($id)->update($rol_edit);
-        return redirect('configuracion_sis/rol')->with('mensaje', 'Rol actualizado con éxito');
+        return redirect('dashboard/configuracion_sis/rol')->with('mensaje', 'Rol actualizado con éxito');
     }
 
     /**

@@ -4,7 +4,6 @@ $(document).ready(function () {
         respuesta_html = '';
         $("#tbody_areas").html(respuesta_html);
 
-
         const data_url = $(this).attr("data_url");
         const id = $(this).val();
         var data = {
@@ -100,6 +99,7 @@ $(document).ready(function () {
             type: "GET",
             data: data,
             success: function (respuesta) {
+                console.log(respuesta);
                 if (respuesta.empresas.length > 0) {
                     var respuesta_html = "";
                     respuesta_html += '<option value="">Elija empresa</option>';

@@ -25,7 +25,7 @@
 @section('cuerpoPagina')
     @can('empleados.index')
         <div class="row">
-            @if (session('rol_principal_id') == 1)
+            @if ((session('rol_principal_id') == 1||session('rol_principal_id') == 2))
                 <div class="col-12 col-md-3 form-group">
                     <label for="emp_grupo_id">Grupo Empresarial</label>
                     <select id="emp_grupo_id" class="form-control form-control-sm"
@@ -37,8 +37,8 @@
                     </select>
                 </div>
             @endif
-            @if (session('rol_principal_id') == 1||$user->empleado->empresas_tranv->count()>1)
-                @if (session('rol_principal_id') == 1)
+            @if ((session('rol_principal_id') == 1||session('rol_principal_id') == 2)||$user->empleado->empresas_tranv->count()>1)
+                @if (session('rol_principal_id') == 1||session('rol_principal_id') == 2)
                     <div class="col-12 col-md-3 form-group d-none" id="caja_empresas">
                         <label class="requerido" for="empresa_id" id="label_empresa_id">Empresa</label>
                         <select id="empresa_id" class="form-control form-control-sm" data_url="{{ route('empleados.getAreas') }}">
@@ -57,7 +57,7 @@
                     </div>
                 @endif
             @endif
-            @if (session('rol_principal_id') == 1||$user->empleado->empresas_tranv->count()>1)
+            @if ((session('rol_principal_id') == 1||session('rol_principal_id') == 2)||$user->empleado->empresas_tranv->count()>1)
                 <div class="col-12 col-md-3 form-group d-none" id="caja_areas">
                     <label class="requerido" for="area_id">Área</label>
                     <select id="area_id" class="form-control form-control-sm" data_url="{{ route('empleados.getCargos') }}">

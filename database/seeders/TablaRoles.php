@@ -40,41 +40,42 @@ class TablaRoles extends Seeder
         Permission::create(['name' => 'empresa.create'])->syncRoles([$rol1,$rol2,$rol3]);
         Permission::create(['name' => 'empresa.edit'])->syncRoles([$rol1,$rol2,$rol3]);
         Permission::create(['name' => 'empresa.destroy'])->syncRoles([$rol1,$rol2,$rol3]);
+        Permission::create(['name' => 'empresa.activar'])->syncRoles([$rol1,$rol2]);
         // ===================================================================================
         Permission::create(['name' => 'grupo_empresas.index'])->syncRoles([$rol1,$rol2,$rol3,$rol4]);
         Permission::create(['name' => 'grupo_empresas.create'])->syncRoles([$rol1,$rol2,$rol3]);
         Permission::create(['name' => 'grupo_empresas.edit'])->syncRoles([$rol1,$rol2,$rol3]);
         Permission::create(['name' => 'grupo_empresas.destroy'])->syncRoles([$rol1,$rol2,$rol3]);
         // ===================================================================================
-        Permission::create(['name' => 'areas.index'])->syncRoles([$rol1]);
-        Permission::create(['name' => 'areas.create'])->syncRoles([$rol1]);
-        Permission::create(['name' => 'areas.edit'])->syncRoles([$rol1]);
-        Permission::create(['name' => 'areas.destroy'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'areas.index'])->syncRoles([$rol1, $rol2]);
+        Permission::create(['name' => 'areas.create'])->syncRoles([$rol1, $rol2]);
+        Permission::create(['name' => 'areas.edit'])->syncRoles([$rol1, $rol2]);
+        Permission::create(['name' => 'areas.destroy'])->syncRoles([$rol1, $rol2]);
 
-        Permission::create(['name' => 'cargos.index'])->syncRoles([$rol1, $rol3]);
-        Permission::create(['name' => 'cargos.create'])->syncRoles([$rol1, $rol3]);
-        Permission::create(['name' => 'cargos.edit'])->syncRoles([$rol1, $rol3]);
-        Permission::create(['name' => 'cargos.destroy'])->syncRoles([$rol1, $rol3]);
+        Permission::create(['name' => 'cargos.index'])->syncRoles([$rol1, $rol2, $rol3]);
+        Permission::create(['name' => 'cargos.create'])->syncRoles([$rol1, $rol2, $rol3]);
+        Permission::create(['name' => 'cargos.edit'])->syncRoles([$rol1, $rol2, $rol3]);
+        Permission::create(['name' => 'cargos.destroy'])->syncRoles([$rol1, $rol2, $rol3]);
 
-        Permission::create(['name' => 'empleados.index'])->syncRoles([$rol1, $rol3]);
-        Permission::create(['name' => 'empleados.create'])->syncRoles([$rol1, $rol3]);
-        Permission::create(['name' => 'empleados.edit'])->syncRoles([$rol1, $rol3]);
-        Permission::create(['name' => 'empleados.destroy'])->syncRoles([$rol1, $rol3]);
-        Permission::create(['name' => 'empleados.activar'])->syncRoles([$rol1, $rol3]);
+        Permission::create(['name' => 'empleados.index'])->syncRoles([$rol1, $rol2, $rol3]);
+        Permission::create(['name' => 'empleados.create'])->syncRoles([$rol1, $rol2, $rol3]);
+        Permission::create(['name' => 'empleados.edit'])->syncRoles([$rol1, $rol2, $rol3]);
+        Permission::create(['name' => 'empleados.destroy'])->syncRoles([$rol1, $rol2, $rol3]);
+        Permission::create(['name' => 'empleados.activar'])->syncRoles([$rol1, $rol2, $rol3]);
 
         // Permisos proyectos
         Permission::create(['name' => 'proyectos.index'])->syncRoles([$rol1, $rol4]);
         Permission::create(['name' => 'proyectos.create'])->syncRoles([$rol1]);
         Permission::create(['name' => 'proyectos.edit'])->syncRoles([$rol1]);
         Permission::create(['name' => 'proyectos.destroy'])->syncRoles([$rol1]);
-        Permission::create(['name' => 'proyectos.detalle'])->syncRoles([$rol1, $rol3]);
+        Permission::create(['name' => 'proyectos.detalle'])->syncRoles([$rol1, $rol2, $rol3]);
         Permission::create(['name' => 'proyectos.gestion'])->syncRoles([$rol1]);
         Permission::create(['name' => 'proyectos.proyecto_empresas'])->syncRoles([$rol1]);
         //---------------------------------------------------------------------------------------------
         //vistas
-        Permission::create(['name' => 'proyectos.ver_datos_empresa'])->syncRoles([$rol1, $rol3]);
-        Permission::create(['name' => 'proyectos.ver_estadistica_tareas'])->syncRoles([$rol1, $rol3]);
-        Permission::create(['name' => 'proyectos.ver_calendario_tareas'])->syncRoles([$rol1, $rol3]);
+        Permission::create(['name' => 'proyectos.ver_datos_empresa'])->syncRoles([$rol1, $rol2, $rol3]);
+        Permission::create(['name' => 'proyectos.ver_estadistica_tareas'])->syncRoles([$rol1, $rol2, $rol3]);
+        Permission::create(['name' => 'proyectos.ver_calendario_tareas'])->syncRoles([$rol1, $rol2, $rol3]);
         //---------------------------------------------------------------------------------------------
         Permission::create(['name' => 'caja_presupuestos'])->syncRoles([$rol1]);
         Permission::create(['name' => 'exportar_proyecto'])->syncRoles([$rol1]);
@@ -121,15 +122,15 @@ class TablaRoles extends Seeder
         Permission::create(['name' => 'subtareas.gestion'])->syncRoles([$rol1]);
         //---------------------------------------------------------------------------------------------
         // Permisos Premisos Empleados
-        Permission::create(['name' => 'permisoscargos.index'])->syncRoles([$rol1, $rol3]);
+        Permission::create(['name' => 'permisoscargos.index'])->syncRoles([$rol1, $rol2, $rol3]);
         //---------------------------------------------------------------------------------------------
         // Permisos Premisos Empleados
-        Permission::create(['name' => 'archivo-modulo.index'])->syncRoles([$rol1, $rol3]);
-        Permission::create(['name' => 'ver_todas_hojas_de_vida'])->syncRoles([$rol1, $rol3]);
-        Permission::create(['name' => 'hojas_vida.hojas_de_vida-editar'])->syncRoles([$rol1, $rol3]);
-        Permission::create(['name' => 'hojas_vida.hojas_de_vida-detalles'])->syncRoles([$rol1, $rol3]);
-        Permission::create(['name' => 'hojas_vida.edicionCargos'])->syncRoles([$rol1, $rol3]);
-        Permission::create(['name' => 'hojas_vida.edicionHV'])->syncRoles([$rol1, $rol3]);
+        Permission::create(['name' => 'archivo-modulo.index'])->syncRoles([$rol1, $rol2, $rol3]);
+        Permission::create(['name' => 'ver_todas_hojas_de_vida'])->syncRoles([$rol1, $rol2, $rol3]);
+        Permission::create(['name' => 'hojas_vida.hojas_de_vida-editar'])->syncRoles([$rol1, $rol2, $rol3]);
+        Permission::create(['name' => 'hojas_vida.hojas_de_vida-detalles'])->syncRoles([$rol1, $rol2, $rol3]);
+        Permission::create(['name' => 'hojas_vida.edicionCargos'])->syncRoles([$rol1, $rol2, $rol3]);
+        Permission::create(['name' => 'hojas_vida.edicionHV'])->syncRoles([$rol1, $rol2, $rol3]);
 
 
 
