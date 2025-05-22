@@ -68,7 +68,7 @@ class AreaController extends Controller
         $usuario = User::with('roles')->findOrFail(session('id_usuario'));
         $area_edit = Area::findOrFail($id);
 
-        if ($usuario->hasRole('Administrador Sistema')) {
+        if ($usuario->hasRole('Administrador Sistema')|| $usuario->hasRole('Administrador')) {
 
             $grupos = GrupoEmpresa::get();
 
