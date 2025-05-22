@@ -67,11 +67,8 @@ class AreaController extends Controller
     {
         $usuario = User::with('roles')->findOrFail(session('id_usuario'));
         $area_edit = Area::findOrFail($id);
-
         if ($usuario->hasRole('Administrador Sistema')|| $usuario->hasRole('Administrador')) {
-
             $grupos = GrupoEmpresa::get();
-
             return view('intranet.empresa.area.editar', compact('grupos','area_edit'));
         } else {
             $grupo = $usuario->empleado->cargo->area->empresa->grupo;

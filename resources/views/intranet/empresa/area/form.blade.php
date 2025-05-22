@@ -1,5 +1,6 @@
 @if (session('rol_principal_id')== 1 ||session('rol_principal_id')== 2)
     <div class="row">
+        @if ($area_edit->empresa->grupo != null)
         <div class="col-12 col-md-3 form-group">
             <label class="requerido" for="emp_grupo_id">Grupo Empresarial</label>
             <select id="emp_grupo_id" class="form-control form-control-sm"
@@ -13,20 +14,27 @@
                     @endforeach
                 </select>
         </div>
+
+        @endif
         <div class="col-12 col-md-3 form-group {{isset($area_edit)==null?'d-none':''}}" id="caja_empresas">
             <label for="empresa_id" id="label_empresa_id">Empresa</label>
-            <select id="empresa_id" name="empresa_id" class="form-control form-control-sm" data_url="{{ route('areas.getAreas') }}">
-                @if (isset($area_edit))
-                    <option value="">Elija empresa</option>
-                    @foreach ($area_edit->empresa->grupo->empresas as $empresa)
-                        <option value="{{ $empresa->id }}" {{$area_edit->empresa_id==$empresa->id? 'selected':''}}>
-                            {{ $empresa->empresa }}
-                        </option>
-                    @endforeach
-                @else
-                    <option value="">Elija grupo</option>
-                @endif
-            </select>
+            @if ($area_edit->empresa->grupo != null)
+                <select id="empresa_id" name="empresa_id" class="form-control form-control-sm" data_url="{{ route('areas.getAreas') }}">
+                    @if (isset($area_edit))
+                        <option value="">Elija empresa</option>
+                        @foreach ($area_edit->empresa->grupo->empresas as $empresa)
+                            <option value="{{ $empresa->id }}" {{$area_edit->empresa_id==$empresa->id? 'selected':''}}>
+                                {{ $empresa->empresa }}
+                            </option>
+                        @endforeach
+                    @else
+                        <option value="">Elija grupo</option>
+                    @endif
+                </select>
+            @else
+                <span class="form-control form-control-sm">{{$area_edit->empresa->empresa}}</span>
+            @endif
+
         </div>
     </div>
 @else
