@@ -104,12 +104,7 @@ $(document).ready(function () {
                     var respuesta_html = "";
                     respuesta_html += '<option value="">Elija empresa</option>';
                     $.each(respuesta.empresas, function (index, item) {
-                        respuesta_html +=
-                            '<option value="' +
-                            item.id +
-                            '">' +
-                            item.empresa +
-                            "</option>";
+                        respuesta_html += '<option value="' + item.id + '">' + item.empresa + "</option>";
                     });
                     $("#empresa_id").html(respuesta_html);
                     $("#caja_empresas").removeClass("d-none");

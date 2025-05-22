@@ -1,18 +1,20 @@
 <div class="row">
-    @if (session('rol_principal_id')== 1)
+    @if (session('rol_principal_id')== 1 || session('rol_principal_id')== 2)
         <div class="col-12 col-md-3 form-group">
             <label class="requerido" for="emp_grupo_id">Grupo Empresarial</label>
-            <select id="emp_grupo_id" class="form-control form-control-sm" data_url="{{route('grupo_empresas.getEmpresas')}}" required>
-                <option value="">Elija grupo empresarial</option>
-                @foreach ($grupos as $grupo)
-                    <option value="{{ $grupo->id }}" {{isset($cargo_edit)? ($cargo_edit->area->empresa->emp_grupo_id==$grupo->id? 'selected':''):''}}>
-                        {{ $grupo->grupo }}
-                    </option>
-                @endforeach
-            </select>
+            <select id="emp_grupo_id" class="form-control form-control-sm"
+                    data_url="{{ route('grupo_empresas.getEmpresas') }}">
+                    <option value="">Elija un Grupo Empresarial</option>
+                    <option value="x">Sin grupo Empresarial</option>
+                    @foreach ($grupos as $grupo)
+                        <option value="{{ $grupo->id }}">
+                            {{ $grupo->grupo }}
+                        </option>
+                    @endforeach
+                </select>
         </div>
     @endif
-    <div class="col-12 col-md-3 form-group {{(session('rol_principal_id')!= 1 || isset($cargo_edit))?'':'d-none'}}" id="caja_empresas">
+    <div class="col-12 col-md-3 form-group {{((session('rol_principal_id')!= 1 || session('rol_principal_id')!= 2) || isset($cargo_edit))?'':'d-none'}}" id="caja_empresas">
         <label for="empresa_id" id="label_empresa_id">Empresa </label>
         <select id="empresa_id" class="form-control form-control-sm" data_url="{{ route('areas.getAreas') }}">
             @if (isset($cargo_edit))
@@ -23,7 +25,7 @@
                     </option>
                 @endforeach
             @else
-                @if (session('rol_principal_id')!= 1)
+                @if ((session('rol_principal_id')!= 1 && session('rol_principal_id')!= 2))
                     @foreach ($grupo->empresas as $empresa)
                         <option value="{{ $empresa->id }}">
                             {{ $empresa->empresa }}

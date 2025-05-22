@@ -10,16 +10,13 @@ $(document).ready(function () {
             type: "GET",
             data: data,
             success: function (respuesta) {
+                console.log(respuesta);
                 var respuesta_html = "";
                 if (respuesta.empresas.length > 0) {
+                    respuesta_html = "";
                     respuesta_html += '<option value="">Elija empresa</option>';
                     $.each(respuesta.empresas, function (index, item) {
-                        respuesta_html +=
-                            '<option value="' +
-                            item.id +
-                            '">' +
-                            item.empresa +
-                            "</option>";
+                        respuesta_html += '<option value="' + item.id + '">' + item.empresa + "</option>";
                     });
                     $("#empresa_id").html(respuesta_html);
                     $("#caja_empresas").removeClass("d-none");
@@ -55,14 +52,11 @@ $(document).ready(function () {
                         respuesta_html += '<option value="' + item.id + '">' + item.area + "</option>";
                     });
                     $("#area_id").html(respuesta_html);
-                    $("#hr_cajaAreas").removeClass("d-none");
-                    $("#row_caja_areas").removeClass("d-none");
-                    $("#area").prop('required',true);
+                    $("#area_id").prop('required',true);
                 }else{
                     $("#area_id").html(respuesta_html);
-                    $("#hr_cajaAreas").addClass("d-none");
-                    $("#row_caja_areas").addClass("d-none");
-                    $("#area").prop('required',false);
+                    $("#caja_areas").addClass("d-none");
+                    $("#area_id").prop('required',false);
                 }
             },
             error: function () {},

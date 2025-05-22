@@ -1,15 +1,17 @@
-@if (session('rol_principal_id')== 1)
+@if (session('rol_principal_id')== 1 ||session('rol_principal_id')== 2)
     <div class="row">
         <div class="col-12 col-md-3 form-group">
             <label class="requerido" for="emp_grupo_id">Grupo Empresarial</label>
-            <select id="emp_grupo_id" class="form-control form-control-sm" data_url="{{route('grupo_empresas.getEmpresas')}}" required>
-                <option value="">Elija grupo empresarial</option>
-                @foreach ($grupos as $grupo)
-                    <option value="{{ $grupo->id }}" {{isset($area_edit)? ($area_edit->empresa->emp_grupo_id==$grupo->id? 'selected':''):''}}>
-                        {{ $grupo->grupo }}
-                    </option>
-                @endforeach
-            </select>
+            <select id="emp_grupo_id" class="form-control form-control-sm"
+                    data_url="{{ route('grupo_empresas.getEmpresas') }}">
+                    <option value="">Elija un Grupo Empresarial</option>
+                    <option value="x">Sin grupo Empresarial</option>
+                    @foreach ($grupos as $grupo)
+                        <option value="{{ $grupo->id }}">
+                            {{ $grupo->grupo }}
+                        </option>
+                    @endforeach
+                </select>
         </div>
         <div class="col-12 col-md-3 form-group {{isset($area_edit)==null?'d-none':''}}" id="caja_empresas">
             <label for="empresa_id" id="label_empresa_id">Empresa</label>
@@ -42,8 +44,8 @@
         </div>
     </div>
 @endif
-<hr class="{{isset($area_edit)?'':'d-none'}}" id="hr_cajaAreas">
-<div class="row {{isset($area_edit)?'':'d-none'}}" id="row_caja_areas">
+<hr  id="hr_cajaAreas">
+<div class="row" id="row_caja_areas">
     <div class="col-12 col-md-3 form-group" id="caja_areas">
         <label for="area_id">Área Superior</label>
         <select id="area_id" class="form-control form-control-sm" name="area_id">
@@ -59,6 +61,6 @@
     </div>
     <div class="col-12 col-md-3 form-group" id="caja_area_nueva">
         <label class="requerido" for="area">Nombre del Área</label>
-        <input type="text" class="form-control form-control-sm" value="{{ old('area', $area_edit->area ?? '') }}" name="area" id="area" >
+        <input type="text" class="form-control form-control-sm" value="{{ old('area', $area_edit->area ?? '') }}" name="area" id="area" required>
     </div>
 </div>

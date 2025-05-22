@@ -28,7 +28,7 @@
                 <select id="emp_grupo_id" class="form-control form-control-sm"
                     data_url="{{ route('grupo_empresas.getEmpresas') }}">
                     <option value="">Elija un Grupo Empresarial</option>
-                    <option value="">Sin Grupo Empresarial</option>
+                    <option value="x">Sin grupo Empresarial</option>
                     @foreach ($grupos as $grupo)
                         <option value="{{ $grupo->id }}">
                             {{ $grupo->grupo }}

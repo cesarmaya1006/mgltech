@@ -34,7 +34,7 @@ class AreaController extends Controller
     public function create()
     {
         $usuario = User::with('roles')->findOrFail(session('id_usuario'));
-        if ($usuario->hasRole('Administrador Sistema')) {
+        if ($usuario->hasRole('Administrador Sistema')||$usuario->hasRole('Administrador')) {
             $grupos = GrupoEmpresa::get();
             return view('intranet.empresa.area.crear', compact('grupos'));
         } else {
