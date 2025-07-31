@@ -22,6 +22,7 @@ if (!function_exists('getMenuActivo')) {
         }
     }
 }
+
 /*
 if (!function_exists('canUser')) {
     function can($permiso, $redirect = true)

@@ -178,7 +178,6 @@
             </div>
         </div>
         <hr>
-
         <div class="row d-flex justify-content-evenly">
             <div class="col-12">
                 <div class="accordion accordion-flush" id="accordionFlushProyectos">
